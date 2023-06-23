@@ -4,7 +4,7 @@ This repo contains a collection of Flex Component: examples, schema tools, and w
 
 ## Main Sections
 
-- [Example Flex Components](components)
+- [Example Flex Components](examples)
 - [flex.json Schema Reference](schema)
 
 ## Additional Resources
