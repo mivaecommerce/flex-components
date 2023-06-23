@@ -8,7 +8,7 @@
 				"flex-advanced-properties.js",
 				"**/flex/*.json"
 			],
-			"url": "file:/Users/jsmith/Documents/flex-components/schema/types.json"
+			"url": "https://cdn.jsdelivr.net/gh/mivaecommerce/flex-components/schema/types.json"
 		}
 	]
 }
