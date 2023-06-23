@@ -1,0 +1,78 @@
+{
+	"code": "ex-faqs",
+	"name": "Example: FAQs",
+	"type": "component",
+	"version": "1.0.0",
+	"managed": false,
+	"category": "text-utility",
+	"properties": [
+		{
+			"code": "faqs",
+			"item_prompt_property": "title:value",
+			"list_type": "group",
+			"prompt": "FAQs List",
+			"properties": [
+				{
+					"code": "title",
+					"prompt": "Title",
+					"type": "text"
+				},
+				{
+					"code": "content",
+					"prompt": "Content",
+					"type": "texteditor"
+				},
+				{
+					"code": "img",
+					"prompt": "Image",
+					"type": "image"
+				}
+			],
+			"template": {
+				"content": {
+					"value": "FAQ content here"
+				},
+				"title": {
+					"value": "FAQ Title"
+				}
+			},
+			"type": "list"
+		}
+	],
+	"advanced_properties": "",
+	"defaults": "",
+	"initialization_template": "src/templates/init.mvt",
+	"instance_template": "src/templates/instance.mvt",
+	"scripts": [
+		{
+			"filepath": "src\/js\/ex-faqs.js",
+			"resource_code": "ex-faqs",
+			"attributes": [
+				{
+					"name": "type",
+					"value": "text\/javascript"
+				}
+			]
+		}
+	],
+	"styles": [
+		{
+			"filepath": "src\/css\/ex-faqs.css",
+			"resource_code": "ex-faqs",
+			"attributes": [
+				{
+					"name": "type",
+					"value": "text\/css"
+				},
+				{
+					"name": "media",
+					"value": "all"
+				},
+				{
+					"name": "rel",
+					"value": "stylesheet"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,52 @@
+{
+	"code": "ex-web-component",
+	"name": "Example: Web Component",
+	"version": "1.0.0",
+	"resourcegroup_code": "ex-web-component",
+	"initialization_template": "src/templates/init.mvt",
+	"instance_template": "src/templates/instance.mvt",
+	"scripts": [
+		{
+			"filepath": "src/js/ex-web-component.js",
+			"resource_code": "ex-web-component",
+			"attributes": [
+				{
+					"name": "type",
+					"value": "module"
+				}
+			]
+		}
+	],
+	"styles": [
+		{
+			"filepath": "src/css/ex-web-component.css",
+			"resource_code": "ex-web-component",
+			"attributes": [
+				{
+					"name": "type",
+					"value": "text/css"
+				},
+				{
+					"name": "media",
+					"value": "all"
+				},
+				{
+					"name": "rel",
+					"value": "stylesheet"
+				}
+			]
+		}
+	],
+	"properties": [
+		{
+			"code": "text",
+			"prompt": "Display Text",
+			"type": "text"
+		}
+	],
+	"defaults": {
+		"text": {
+			"value": "This is the default text"
+		}
+	}
+}

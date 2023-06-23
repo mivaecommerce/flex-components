@@ -1,0 +1,39 @@
+<table class="ex-comparison-table">
+	<tr>
+		<th></th>
+		<th colspan="2">Ideal For</th>
+		<th colspan="3">Finish</th>
+	</tr>
+	<tr>
+		<th>Product Name</th>
+		<th>Interior</th>
+		<th>Exterior</th>
+		<th>Smooth</th>
+		<th>Textured</th>
+		<th>Rough</th>
+	</tr>
+	<mvt:foreach iterator="row" array="instance:rows:children">
+		<mvt:assign name="l.settings:row:row:ideal_for:interior:checked" value="ternary(l.settings:row:ideal_for:interior:value, 'checked', '')" />
+		<mvt:assign name="l.settings:row:row:ideal_for:exterior:checked" value="ternary(l.settings:row:ideal_for:exterior:value, 'checked', '')" />
+		<tr>
+			<td>
+				<mvt:if expr="l.settings:row:link:url">
+					<a href="&mvte:row:link:url;">&mvte:row:name:value;</a>
+				<mvt:else>
+					&mvte:row:name:value;
+				</mvt:if>
+			</td>
+			<td><input type="checkbox" disabled &mvte:row:row:ideal_for:interior:checked;></td>
+			<td><input type="checkbox" disabled &mvte:row:row:ideal_for:exterior:checked;></td>
+			<td class="quality quality--&mvts:row:finish:smooth:value;">&mvte:row:finish:smooth:value;</td>
+			<td class="quality quality--&mvts:row:finish:textured:value;">&mvte:row:finish:textured:value;</td>
+			<td class="quality quality--&mvts:row:finish:rough:value;">&mvte:row:finish:rough:value;</td>
+		</tr>
+	</mvt:foreach>
+</table>
+
+<mvt:assign name="g.mvt_debug" value="glosub( miva_array_serialize( l.settings:instance ), ',', asciichar( 10 ) )" />
+<pre>
+@@l.settings:instance
+&mvt:global:mvt_debug;
+</pre>

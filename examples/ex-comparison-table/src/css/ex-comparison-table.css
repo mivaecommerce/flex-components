@@ -1,0 +1,27 @@
+.ex-comparison-table tr {
+	border-bottom: 1px solid grey;
+}
+
+.ex-comparison-table *:is(td,th) {
+	text-align: center;
+}
+
+.ex-comparison-table .quality {
+	text-transform: capitalize;
+}
+
+.ex-comparison-table .quality--na {
+	background: rgba(0, 128, 0, 0.05);
+}
+
+.ex-comparison-table .quality--good {
+	background: rgba(0, 128, 0, 0.1);
+}
+
+.ex-comparison-table .quality--better {
+	background: rgba(0, 128, 0, 0.3);
+}
+
+.ex-comparison-table .quality--best {
+	background: rgba(0, 128, 0, 0.6);
+}

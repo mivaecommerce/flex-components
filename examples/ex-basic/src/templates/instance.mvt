@@ -1,0 +1,11 @@
+<div class="ex-basic">
+	&mvte:instance:text:value;
+</div>
+
+
+<mvt:assign name="g.mvt_debug" value="glosub( miva_array_serialize( l.settings:instance ), ',', asciichar( 10 ) )" />
+<!--
+@@l.settings:instance
+===l.settings:instance
+&mvt:global:mvt_debug;
+-->

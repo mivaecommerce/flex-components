@@ -1,0 +1,7 @@
+<mmx-example
+	class="mmx-wrapper"
+	style="margin-top: &mvte:instance:advanced:spacing:top:value;px; margin-bottom: &mvte:instance:advanced:spacing:bottom:value;px;"
+	data-color="&mvte:instance:color:value;"
+>
+	&mvte:instance:content:value;
+</mmx-example>

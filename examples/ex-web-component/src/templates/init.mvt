@@ -1,0 +1,6 @@
+<mvt:item name="head" param="js:ex-web-component" />
+
+<template id="ex-web-component-template">
+	<mvt:item name="head" param="css:ex-web-component" />
+	<span class="ex-web-component-text"></span>
+</template>

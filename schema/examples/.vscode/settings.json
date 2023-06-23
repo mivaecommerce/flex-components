@@ -1,0 +1,14 @@
+{
+	"json.schemas": [
+		{
+			"fileMatch": [
+				"flex.json",
+				"flex-core.json",
+				"flex-properties.js",
+				"flex-advanced-properties.js",
+				"**/flex/*.json"
+			],
+			"url": "file:/Users/jsmith/Documents/flex-components/schema/types.json"
+		}
+	]
+}

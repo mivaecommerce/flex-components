@@ -1,0 +1,473 @@
+{
+	"code": "ex-kitchen-sink",
+	"name": "Example: Kitchen Sink",
+	"version": "1.0.0",
+	"resourcegroup_code": "ex-kitchen-sink",
+	"initialization_template": "",
+	"instance_template": "src/templates/instance.mvt",
+	"category": "text-utility",
+	"properties": [
+		{
+			"code": "radio",
+			"options": [
+				{
+					"text": "Option #1",
+					"value": "option_1"
+				},
+				{
+					"text": "Option #2",
+					"value": "option_2"
+				},
+				{
+					"text": "Option #3",
+					"value": "option_3"
+				}
+			],
+			"prompt": "Radio",
+			"type": "radio",
+			"placeholder": "placeholder... radio"
+		},
+		{
+			"code": "select",
+			"options": [
+				{
+					"text": "Option #1",
+					"value": "option_1"
+				},
+				{
+					"text": "Option #2",
+					"value": "option_2"
+				},
+				{
+					"text": "Option #3",
+					"value": "option_3"
+				}
+			],
+			"prompt": "Select",
+			"type": "select",
+			"placeholder": "placeholder... select"
+		},
+		{
+			"code": "selector",
+			"options": [
+				{
+					"text": "Top",
+					"value": "top"
+				},
+				{
+					"text": "Center",
+					"value": "center"
+				},
+				{
+					"text": "Bottom",
+					"value": "bottom"
+				}
+			],
+			"prompt": "Selector",
+			"type": "selector",
+			"placeholder": "placeholder... selector"
+		},
+		{
+			"code": "checkbox",
+			"prompt": "Checkbox",
+			"type": "checkbox",
+			"placeholder": "placeholder... checkbox"
+		},
+		{
+			"code": "text",
+			"prompt": "Text",
+			"minlength": 2,
+			"maxlength": 20,
+			"required": true,
+			"type": "text",
+			"placeholder": "placeholder... text"
+		},
+		{
+			"code": "textsettings",
+			"prompt": "Text with Text Settings",
+			"type": "text",
+			"textsettings": {
+				"fields": [
+					{
+						"code": "select",
+						"options": [
+							{
+								"text": "Default",
+								"value": ""
+							},
+							{
+								"text": "Option #1",
+								"value": "opt-1"
+							},
+							{
+								"text": "Option #2",
+								"value": "opt-2"
+							}
+						],
+						"prompt": "Select an Option",
+						"pseudoclasses": [
+							"normal"
+						],
+						"type": "select"
+					},
+					{
+						"code": "font_size",
+						"prompt": "Font Size",
+						"style": "font-size",
+						"type": "text",
+						"text_type": "number",
+						"label": "px",
+						"placeholder": 24,
+						"min": 1,
+						"size": "one-third",
+						"pseudoclasses": [
+							"normal"
+						]
+					},
+					{
+						"code": "font_weight",
+						"options": [
+							{
+								"text": "Default",
+								"value": ""
+							},
+							{
+								"text": "Ultra-Thin",
+								"value": 100
+							},
+							{
+								"text": "Light",
+								"value": 200
+							},
+							{
+								"text": "Book",
+								"value": 300
+							},
+							{
+								"text": "Normal",
+								"value": 400
+							},
+							{
+								"text": "Medium",
+								"value": 500
+							},
+							{
+								"text": "Semi-Bold",
+								"value": 600
+							},
+							{
+								"text": "Bold",
+								"value": 700
+							},
+							{
+								"text": "Black",
+								"value": 900
+							}
+						],
+						"prompt": "Font Weight",
+						"style": "font-weight",
+						"type": "select",
+						"size": "two-thirds",
+						"pseudoclasses": [
+							"normal"
+						]
+					},
+					{
+						"code": "font_color",
+						"prompt": "Font Color",
+						"style": "color",
+						"type": "color",
+						"placeholder": "#000000",
+						"pseudoclasses": [
+							"normal"
+						]
+					}
+				]
+			}
+		},
+		{
+			"type": "group",
+			"code": "text_types",
+			"prompt": "Text Types",
+			"properties": [
+				{
+					"code": "text_type__number",
+					"prompt": "Text-Type: Number",
+					"type": "text",
+					"text_type": "number",
+					"placeholder": "placeholder... number"
+				},
+				{
+					"code": "text_type__email",
+					"prompt": "Text-Type: Email",
+					"type": "text",
+					"text_type": "email",
+					"placeholder": "placeholder... email"
+				},
+				{
+					"code": "text_type__URL",
+					"prompt": "Text-Type: Url",
+					"type": "text",
+					"text_type": "url",
+					"placeholder": "placeholder... url"
+				},
+				{
+					"code": "text_type__password",
+					"prompt": "Text-Type: Password",
+					"type": "text",
+					"text_type": "password",
+					"placeholder": "placeholder... password"
+				},
+				{
+					"code": "text_type__tel",
+					"prompt": "Text-Type: Tel",
+					"type": "text",
+					"text_type": "tel",
+					"placeholder": "placeholder... tel"
+				}
+			]
+		},
+		{
+			"code": "group",
+			"type": "group",
+			"prompt": "Group #1",
+			"collapsed": false,
+			"properties": [
+				{
+					"code": "text",
+					"prompt": "Text #1",
+					"type": "text"
+				},
+				{
+					"code": "group",
+					"type": "group",
+					"prompt": "Group #2 (can_disable=true)",
+					"collapsed": true,
+					"can_disable": true,
+					"properties": [
+						{
+							"code": "text",
+							"prompt": "Text #3",
+							"type": "text"
+						},
+						{
+							"code": "group",
+							"type": "group",
+							"prompt": "Group #3 (can_disable=false)",
+							"can_disable": false,
+							"properties": [
+								{
+									"code": "text",
+									"prompt": "Text #2",
+									"type": "text"
+								},
+								{
+									"code": "group",
+									"type": "group",
+									"prompt": "Group #4",
+									"can_disable": true,
+									"properties": [
+										{
+											"code": "text",
+											"prompt": "Text #3",
+											"type": "text"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"code": "texteditor",
+			"prompt": "Text Editor",
+			"type": "texteditor",
+			"placeholder": "placeholder... texteditor"
+		},
+		{
+			"code": "textarea",
+			"prompt": "Text Area",
+			"type": "textarea",
+			"placeholder": "placeholder... textarea"
+		},
+		{
+			"code": "image",
+			"prompt": "Image (Desktop)",
+			"responsive_images": [
+				{
+					"code": "mobile",
+					"height": 320,
+					"prompt": "Mobile Image",
+					"width": 344
+				},
+				{
+					"code": "tablet",
+					"height": 320,
+					"prompt": "Tablet Image",
+					"width": 720
+				}
+			],
+			"height": 580,
+			"width": 1600,
+			"type": "image",
+			"placeholder": "placeholder... image"
+		},
+		{
+			"code": "product",
+			"prompt": "Product",
+			"type": "product",
+			"placeholder": "placeholder... product"
+		},
+		{
+			"code": "category",
+			"prompt": "Category",
+			"type": "category",
+			"placeholder": "placeholder... category"
+		},
+		{
+			"code": "link",
+			"prompt": "Link",
+			"type": "link",
+			"placeholder": "placeholder... link"
+		},
+		{
+			"code": "color",
+			"prompt": "Color",
+			"type": "color",
+			"placeholder": "placeholder... color"
+		},
+		{
+			"code": "date",
+			"prompt": "Date",
+			"type": "date",
+			"placeholder": "placeholder... date"
+		},
+		{
+			"code": "datetime",
+			"prompt": "Date Time",
+			"type": "text",
+			"placeholder": "placeholder... datetime"
+		},
+		{
+			"type": "list",
+			"max_count": 8,
+			"min_count": 0,
+			"list_type": "group",
+			"code": "list_group",
+			"prompt": "List of Groups",
+			"item_prompt_property": "text:value",
+			"group_prompt": "New Group",
+			"properties": [
+				{
+					"code": "text",
+					"prompt": "Text",
+					"type": "text",
+					"placeholder": "placeholder... text"
+				},
+				{
+					"code": "textarea",
+					"prompt": "Text Area",
+					"type": "textarea",
+					"placeholder": "placeholder... textarea"
+				},
+				{
+					"code": "list_group",
+					"type": "group",
+					"prompt": "List Group #1",
+					"properties": [
+						{
+							"code": "text",
+							"prompt": "List Group Text #1",
+							"type": "text"
+						},
+						{
+							"code": "text",
+							"prompt": "List Group Text #2",
+							"type": "text"
+						},
+						{
+							"code": "list_group",
+							"type": "group",
+							"prompt": "List Group #2",
+							"properties": [
+								{
+									"code": "text",
+									"prompt": "List Group Text #1",
+									"type": "text"
+								},
+								{
+									"code": "text",
+									"prompt": "List Group Text #2",
+									"type": "text"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "list",
+			"max_count": 8,
+			"min_count": 0,
+			"list_type": "text",
+			"code": "list_text",
+			"prompt": "List of Text Boxes"
+		},
+		{
+			"type": "list",
+			"max_count": 8,
+			"min_count": 0,
+			"list_type": "image",
+			"code": "list_image",
+			"prompt": "List of Images"
+		},
+		{
+			"type": "list",
+			"max_count": 8,
+			"min_count": 0,
+			"list_type": "product",
+			"code": "list_product",
+			"prompt": "List of Products"
+		},
+		{
+			"type": "list",
+			"max_count": 8,
+			"min_count": 0,
+			"list_type": "category",
+			"code": "list_category",
+			"prompt": "Lists of Categories"
+		},
+		{
+			"type": "list",
+			"max_count": 8,
+			"min_count": 0,
+			"list_type": "color",
+			"code": "list_color",
+			"prompt": "List of Color Pickers"
+		},
+		{
+			"type": "list",
+			"max_count": 8,
+			"min_count": 0,
+			"list_type": "date",
+			"code": "list_date",
+			"prompt": "List of Date Pickers"
+		},
+		{
+			"type": "list",
+			"max_count": 8,
+			"min_count": 0,
+			"list_type": "datetime",
+			"code": "list_datetime",
+			"prompt": "List of Date/Time Picker"
+		}
+	],
+	"defaults": {
+		"text": {
+			"value": "Default text here"
+		}
+	}
+}

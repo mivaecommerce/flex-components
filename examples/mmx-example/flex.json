@@ -1,0 +1,95 @@
+{
+	"category": "text",
+	"code": "mmx-example",
+	"initialization_template": "src/templates/init.mvt",
+	"instance_template": "src/templates/instance.mvt",
+	"preview": "src/images/preview.svg",
+	"name": "MMX Example",
+	"resourcegroup_code": "mmx-example",
+	"version": "0.1.0",
+	"properties": [
+		{
+			"code": "content",
+			"prompt": "Content",
+			"type": "text"
+		},
+		{
+			"code": "color",
+			"prompt": "Color",
+			"style": "color",
+			"type": "color",
+			"placeholder": "#000000, rgba(0,0,0,0), hsl(0,0,0)"
+		}
+	],
+	"styles": [
+		{
+			"filepath": "src/css/styles.css",
+			"resource_code": "mmx-example",
+			"attributes": [
+				{
+					"name": "type",
+					"value": "text/css"
+				},
+				{
+					"name": "media",
+					"value": "all"
+				},
+				{
+					"name": "rel",
+					"value": "stylesheet"
+				}
+			]
+		}
+	],
+	"scripts": [
+		{
+			"filepath": "src/js/scripts.js",
+			"resource_code": "mmx-example",
+			"attributes": [
+				{
+					"name": "type",
+					"value": "application/javascript"
+				}
+			]
+		}
+	],
+	"advanced_properties": [
+		{
+			"code": "spacing",
+			"prompt": "Spacing",
+			"properties": [
+				{
+					"code": "top",
+					"label": "px",
+					"max": 200,
+					"min": -50,
+					"prompt": "Top",
+					"required": false,
+					"step": 1,
+					"text_type": "number",
+					"type": "text"
+				},
+				{
+					"code": "bottom",
+					"label": "px",
+					"max": 200,
+					"min": -50,
+					"prompt": "Bottom",
+					"required": false,
+					"step": 1,
+					"text_type": "number",
+					"type": "text"
+				}
+			],
+			"type": "group"
+		}
+	],
+	"defaults": {
+		"content": {
+			"value": "Hello World"
+		},
+		"color": {
+			"value": "#000099"
+		}
+	}
+}

@@ -1,0 +1,174 @@
+{
+	"code": "ex-comparison-table",
+	"name": "Example: Comparison Table",
+	"type": "component",
+	"version": "1.0.0",
+	"managed": false,
+	"category": "text-utility",
+	"properties": [
+		{
+			"code": "rows",
+			"item_prompt_property": "name:value",
+			"list_type": "group",
+			"prompt": "Rows",
+			"properties": [
+				{
+					"code": "name",
+					"prompt": "Product Name",
+					"type": "text"
+				},
+				{
+					"code": "link",
+					"prompt": "Link",
+					"type": "link"
+				},
+				{
+					"code": "ideal_for",
+					"prompt": "Ideal For",
+					"properties": [
+						{
+							"code": "interior",
+							"prompt": "Interior",
+							"type": "checkbox"
+						},
+						{
+							"code": "exterior",
+							"prompt": "Exterior",
+							"type": "checkbox"
+						}
+					],
+					"type": "group"
+				},
+				{
+					"code": "finish",
+					"prompt": "Finish",
+					"properties": [
+						{
+							"code": "smooth",
+							"options": [
+								{
+									"text": "N\/A",
+									"value": "na"
+								},
+								{
+									"text": "Good",
+									"value": "good"
+								},
+								{
+									"text": "Better",
+									"value": "better"
+								},
+								{
+									"text": "Best",
+									"value": "best"
+								}
+							],
+							"prompt": "Smooth",
+							"type": "selector"
+						},
+						{
+							"code": "textured",
+							"options": [
+								{
+									"text": "N\/A",
+									"value": "na"
+								},
+								{
+									"text": "Good",
+									"value": "good"
+								},
+								{
+									"text": "Better",
+									"value": "better"
+								},
+								{
+									"text": "Best",
+									"value": "best"
+								}
+							],
+							"prompt": "Textured",
+							"type": "selector"
+						},
+						{
+							"code": "rough",
+							"options": [
+								{
+									"text": "N\/A",
+									"value": "na"
+								},
+								{
+									"text": "Good",
+									"value": "good"
+								},
+								{
+									"text": "Better",
+									"value": "better"
+								},
+								{
+									"text": "Best",
+									"value": "best"
+								}
+							],
+							"prompt": "Rough",
+							"type": "selector"
+						}
+					],
+					"type": "group"
+				}
+			],
+			"template": {
+				"name": {
+					"value": "Example Product Name"
+				},
+				"finish": {
+					"smooth": {
+						"value": "na"
+					},
+					"textured": {
+						"value": "na"
+					},
+					"rough": {
+						"value": "na"
+					}
+				}
+			},
+			"type": "list"
+		}
+	],
+	"advanced_properties": "",
+	"defaults": "",
+	"initialization_template": "src/templates/init.mvt",
+	"instance_template": "src/templates/instance.mvt",
+	"scripts": [
+		{
+			"filepath": "src\/js\/ex-comparison-table.js",
+			"resource_code": "ex-comparison-table",
+			"attributes": [
+				{
+					"name": "type",
+					"value": "text\/javascript"
+				}
+			]
+		}
+	],
+	"styles": [
+		{
+			"filepath": "src\/css\/ex-comparison-table.css",
+			"resource_code": "ex-comparison-table",
+			"attributes": [
+				{
+					"name": "type",
+					"value": "text\/css"
+				},
+				{
+					"name": "media",
+					"value": "all"
+				},
+				{
+					"name": "rel",
+					"value": "stylesheet"
+				}
+			]
+		}
+	]
+}

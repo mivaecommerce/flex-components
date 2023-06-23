@@ -1,0 +1,17 @@
+<dl class="ex-faqs">
+	<mvt:foreach iterator="faq" array="instance:faqs:children">
+		<dt>&mvte:faq:title:value;</dt>
+		<dd>
+			<mvt:if expr="l.settings:faq:img:image">
+				<div><img src="&mvte:faq:img:image;" alt="&mvt:faq:img:alt;"></div>
+			</mvt:if>
+			&mvt:faq:content:value;
+		</dd>
+	</mvt:foreach>
+</dl>
+
+<mvt:assign name="g.mvt_debug" value="glosub( miva_array_serialize( l.settings:instance ), ',', asciichar( 10 ) )" />
+<pre>
+@@l.settings:instance
+&mvt:global:mvt_debug;
+</pre>
