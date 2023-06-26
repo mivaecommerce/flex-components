@@ -6,6 +6,7 @@ This repo contains a collection of Flex Component: examples, schema tools, and w
 
 - [Example Flex Components](examples)
 - [flex.json Schema Reference](schema)
+- [Guide: Duplicating MMX Components](guides/duplicating-mmx-components.md)
 
 ## Additional Resources
 
