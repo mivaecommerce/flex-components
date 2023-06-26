@@ -1,0 +1,69 @@
+{
+	"code": "mmx-base",
+	"name": "MMX Base",
+	"type": "library",
+	"version": "10.07.00",
+	"managed": true,
+	"resourcegroup_code": "mmx-base",
+	"scripts": [
+		{
+			"filepath": "src\/js\/mmx-base.js",
+			"resource_code": "mmx-base",
+			"attributes": [
+				{
+					"name": "type",
+					"value": "text\/javascript"
+				},
+				{
+					"name": "integrity",
+					"value": "sha256-AyYeStjvh1nJqCxTm+U0NW4M3ZHz4D9F\/AvFafmKm5A\u003D sha384-JqfZqF67TdP6ob0SFFqbkM66t71ma9w\/uLmZuN7q+fkw0Ksq6PgSRdl09TvpW+Ir sha512-Pk+XRFpH9M9K4u4rdOHZ6h786cz4LTXBbY88zj9uliaB354EBWPY927WMxBzT+DqUpIF1pO1Yfbw1QAFFQ6fjQ\u003D\u003D"
+				},
+				{
+					"name": "crossorigin",
+					"value": "anonymous"
+				}
+			]
+		}
+	],
+	"styles": [
+		{
+			"filepath": "src\/css\/mmx-base.css",
+			"resource_code": "mmx-base",
+			"attributes": [
+				{
+					"name": "type",
+					"value": "text\/css"
+				},
+				{
+					"name": "media",
+					"value": "all"
+				},
+				{
+					"name": "rel",
+					"value": "stylesheet"
+				},
+				{
+					"name": "integrity",
+					"value": "sha256-uQedPlgmwcPMgqrNExwO3hYSh7EURhievEd+HLaK7OY\u003D sha384-mp5OteEjtoCEdz\/QMebQE8vpSWoukpgxdDz+DzUl8xn3448yIMCccLddrNoIKLsg sha512-Pfps9VvIww7kAN\/YZXOmQ7th7iZ43N4uqaG0PjGlwSqhu9GK40CMmnOC+rgVb69ro0zJlfDOtMVdaS5QOstxaA\u003D\u003D"
+				},
+				{
+					"name": "crossorigin",
+					"value": "anonymous"
+				}
+			]
+		}
+	],
+	"conflicts": {
+		"mmx-category-carousel": "\u003C10.07.00",
+		"mmx-featured-product": "\u003C10.07.00",
+		"mmx-hero": "\u003C10.07.00",
+		"mmx-hero-slider": "\u003C10.07.00",
+		"mmx-image-across": "\u003C10.07.00",
+		"mmx-image-and-text": "\u003C10.07.00",
+		"mmx-product-carousel": "\u003C10.07.00",
+		"mmx-text-area": "\u003C10.07.00",
+		"mmx-text-banner": "\u003C10.07.00",
+		"mmx-text-editor": "\u003C10.07.00",
+		"mmx-video": "\u003C10.07.00"
+	}
+}
