@@ -31,7 +31,14 @@ export interface FlexComponent {
 	/** Object where the key is a Component's Code and value is the Version number with an optional leading >, >=, <, <=, ex:"mmx-base": ">=10.07.00" */
 	depends?: object
 	/** Object where the key is a Component's Code and value is the Version number with an optional leading >, >=, <, <=, ex: "mmx-base": ">=10.07.00" */
-	conflicts?: object
+	conflicts?: object,
+	/**
+	 * Boolean to indicate if the JS/CSS Resources should be module managed resources or not.
+	 *    `managed: true` - users *cannot* modify or delete the CSS/JS Resources of the Flex Component.
+	 *    `managed: false` - users *can* modify or delete the CSS/JS Resources of the Flex Component
+     *    Default is `true`
+	 */
+	managed?: boolean
 }
 
 // Utility Types
