@@ -339,7 +339,7 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 		}
 
 		return /*html*/`
-			<div part="wrapper" class="mmx-featured-product mmx-featured-product__image-position-${MMX.encodeEntities(this.getPropValue('image-position'))}">
+			<div part="wrapper" class="dup-featured-product dup-featured-product__image-position-${MMX.encodeEntities(this.getPropValue('image-position'))}">
 				${this.renderProductImages()}
 				${this.renderProductContent()}
 			</div>
@@ -360,7 +360,7 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 		return /*html*/`
 			<mmx-hero-slider
 				part="image-slider"
-				class="mmx-featured-product__image-slider"
+				class="dup-featured-product__image-slider"
 				data-autoplay="false"
 				data-size="${MMX.encodeEntities(this.getPropValue('desktop-image-size'))}"
 				data-nav-position="under"
@@ -404,7 +404,7 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 
 	renderProductContent() {
 		return /*html*/`
-			<div part="product-content" class="mmx-featured-product__product-content">
+			<div part="product-content" class="dup-featured-product__product-content">
 				<form autocomplete="off" method="post" action="${MMX.encodeEntities(this.getBaskUrl())}">
 					<input name="Action" type="hidden" value="ADPR" />
 					<input name="Product_Code" type="hidden" value="${MMX.encodeEntities(this.getPropValue('product-code'))}" />
@@ -412,16 +412,16 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 					${this.renderProductContentSubheading()}
 					<mmx-text
 						part="product-name"
-						class="mmx-featured-product__product-name-text"
+						class="dup-featured-product__product-name-text"
 						data-style="${MMX.encodeEntities(this.getPropValue('product-name-style'))}"
 						data-tag="${MMX.encodeEntities(this.getPropValue('product-name-tag'))}"
 						${this.renderFontStyles('product-name')}
 					>
 						${this.product.name}
 					</mmx-text>
-					<div class="mmx-featured-product__pricing-discounts">
-						<div class="mmx-featured-product__pricing">
-							<div part="current-price" id="price-value" class="mmx-featured-product__current-price">${this.product.formatted_price}</div>
+					<div class="dup-featured-product__pricing-discounts">
+						<div class="dup-featured-product__pricing">
+							<div part="current-price" id="price-value" class="dup-featured-product__current-price">${this.product.formatted_price}</div>
 							${this.renderProductContentOriginalPricing()}
 						</div>
 						${this.renderProductContentDiscounts()}
@@ -445,7 +445,7 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 		return /*html*/`
 			<mmx-text
 				part="subheading"
-				class="mmx-featured-product__subheading"
+				class="dup-featured-product__subheading"
 				data-style="${MMX.encodeEntities(this.getPropValue('subheading-style'))}"
 				${this.renderFontStyles('subheading')}
 			>
@@ -460,7 +460,7 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 		}
 
 		return /*html*/`
-			<s part="original-price" id="price-value-additional" class="mmx-featured-product__original-price">${this.product.formatted_base_price}</s>
+			<s part="original-price" id="price-value-additional" class="dup-featured-product__original-price">${this.product.formatted_base_price}</s>
 		`;
 	}
 
@@ -470,7 +470,7 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 		}
 
 		return /*html*/`
-			<div id="discount" class="mmx-featured-product__discounts">${this.product.discounts?.map(discount => this.renderProductContentDiscount(discount)).join('') || ''}</div>
+			<div id="discount" class="dup-featured-product__discounts">${this.product.discounts?.map(discount => this.renderProductContentDiscount(discount)).join('') || ''}</div>
 		`;
 	}
 
@@ -482,7 +482,7 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 
 	renderProductContentInventoryMessage() {
 		return /*html*/`
-			<div part="inventory-message" id="inv-message" class="mmx-featured-product__product-inventory_message"></div>
+			<div part="inventory-message" id="inv-message" class="dup-featured-product__product-inventory_message"></div>
 		`;
 	}
 
@@ -492,7 +492,7 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 		}
 
 		return /*html*/`
-			<div class="mmx-featured-product__product-attributes">
+			<div class="dup-featured-product__product-attributes">
 				${this.product.attributes.map((attribute, index) => this.renderProductContentAttribute(attribute, index + 1, null)).join('')}
 				${this.renderProductContentAttributeSubscription()}
 			</div>
@@ -528,9 +528,9 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 
 		return /*html*/`
 			${this.renderProductContentAttributeCommon(attribute, index, template)}
-			<div class="mmx-featured-product__product-attribute">
-				<label class="mmx-featured-product__product-attribute-label ${MMX.encodeEntities(required)}" for="${MMX.encodeEntities(attribute_id)}" title="${MMX.encodeEntities(attribute.prompt)}">${attribute.prompt}</label>
-				<input id="${MMX.encodeEntities(attribute_id)}" class="mmx-featured-product__product-attribute-input" data-attribute="${MMX.encodeEntities(attribute.code)}" data-option-price="${MMX.encodeEntities(attribute.price)}" data-regular-price="" type="text" name="Product_Attributes[${MMX.encodeEntities(index)}]:value" value="" placeholder="" />
+			<div class="dup-featured-product__product-attribute">
+				<label class="dup-featured-product__product-attribute-label ${MMX.encodeEntities(required)}" for="${MMX.encodeEntities(attribute_id)}" title="${MMX.encodeEntities(attribute.prompt)}">${attribute.prompt}</label>
+				<input id="${MMX.encodeEntities(attribute_id)}" class="dup-featured-product__product-attribute-input" data-attribute="${MMX.encodeEntities(attribute.code)}" data-option-price="${MMX.encodeEntities(attribute.price)}" data-regular-price="" type="text" name="Product_Attributes[${MMX.encodeEntities(index)}]:value" value="" placeholder="" />
 			</div>
 		`;
 	}
@@ -541,9 +541,9 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 
 		return /*html*/`
 			${this.renderProductContentAttributeCommon(attribute, index, template)}
-			<div class="mmx-featured-product__product-attribute">
-				<label class="mmx-featured-product__product-attribute-label ${MMX.encodeEntities(required)}" for="${MMX.encodeEntities(attribute_id)}" title="${MMX.encodeEntities(attribute.prompt)}">${attribute.prompt}</label>
-				<textarea id="${MMX.encodeEntities(attribute_id)}" class="mmx-featured-product__product-attribute-textarea" data-attribute="${MMX.encodeEntities(attribute.code)}" data-option-price="${MMX.encodeEntities(attribute.price)}" data-regular-price="" name="Product_Attributes[${MMX.encodeEntities(index)}]:value" placeholder="" ${MMX.encodeEntities(required)}></textarea>
+			<div class="dup-featured-product__product-attribute">
+				<label class="dup-featured-product__product-attribute-label ${MMX.encodeEntities(required)}" for="${MMX.encodeEntities(attribute_id)}" title="${MMX.encodeEntities(attribute.prompt)}">${attribute.prompt}</label>
+				<textarea id="${MMX.encodeEntities(attribute_id)}" class="dup-featured-product__product-attribute-textarea" data-attribute="${MMX.encodeEntities(attribute.code)}" data-option-price="${MMX.encodeEntities(attribute.price)}" data-regular-price="" name="Product_Attributes[${MMX.encodeEntities(index)}]:value" placeholder="" ${MMX.encodeEntities(required)}></textarea>
 			</div>
 		`;
 	}
@@ -553,8 +553,8 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 
 		return /*html*/`
 			${this.renderProductContentAttributeCommon(attribute, index, template)}
-			<div class="mmx-featured-product__product-attribute">
-				<span class="mmx-featured-product__product-attribute-label ${MMX.encodeEntities(required)}" title="${MMX.encodeEntities(attribute.prompt)}">${attribute.prompt}</span>
+			<div class="dup-featured-product__product-attribute">
+				<span class="dup-featured-product__product-attribute-label ${MMX.encodeEntities(required)}" title="${MMX.encodeEntities(attribute.prompt)}">${attribute.prompt}</span>
 				${attribute.options.map(option => this.renderProductContentAttributeRadioOption(attribute, index, option)).join('')}
 			</div>
 		`;
@@ -570,9 +570,9 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 		else						encoded_image_template = `${MMX.encodeEntities(option.prompt)} ${option.price ? option.formatted_price : ''}`;
 
 		return /*html*/`
-			<label class="mmx-featured-product__product-attribute-checkbox mmx-featured-product__product-attribute-checkbox__radio" title="${MMX.encodeEntities(option.prompt)}">
-				<input class="mmx-featured-product__product-attribute-checkbox__input" data-attribute="${MMX.encodeEntities(attribute.code)}" data-option-price="${MMX.encodeEntities(option.price)}" data-regular-price="" type="radio" name="Product_Attributes[${MMX.encodeEntities(index)}]:value" value="${MMX.encodeEntities(option.code)}" ${MMX.encodeEntities(checked)} ${MMX.encodeEntities(required)}>
-				<span class="mmx-featured-product__product-attribute-checkbox__caption">${encoded_image_template}</span>
+			<label class="dup-featured-product__product-attribute-checkbox dup-featured-product__product-attribute-checkbox__radio" title="${MMX.encodeEntities(option.prompt)}">
+				<input class="dup-featured-product__product-attribute-checkbox__input" data-attribute="${MMX.encodeEntities(attribute.code)}" data-option-price="${MMX.encodeEntities(option.price)}" data-regular-price="" type="radio" name="Product_Attributes[${MMX.encodeEntities(index)}]:value" value="${MMX.encodeEntities(option.code)}" ${MMX.encodeEntities(checked)} ${MMX.encodeEntities(required)}>
+				<span class="dup-featured-product__product-attribute-checkbox__caption">${encoded_image_template}</span>
 			</label>
 		`;
 	}
@@ -583,10 +583,10 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 
 		return /*html*/`
 			${this.renderProductContentAttributeCommon(attribute, index, template)}
-			<div class="mmx-featured-product__product-attribute">
-				<label class="mmx-featured-product__product-attribute-label ${MMX.encodeEntities(required)}" for="${MMX.encodeEntities(attribute_id)}" title="${MMX.encodeEntities(attribute.prompt)}">${attribute.prompt}</label>
-				<div class="mmx-featured-product__product-attribute-select">
-					<select id="${MMX.encodeEntities(attribute_id)}" class="mmx-featured-product__product-attribute-select__dropdown" data-attribute="${MMX.encodeEntities(attribute.code)}" name="Product_Attributes[${MMX.encodeEntities(index)}]:value" ${MMX.encodeEntities(required)}>
+			<div class="dup-featured-product__product-attribute">
+				<label class="dup-featured-product__product-attribute-label ${MMX.encodeEntities(required)}" for="${MMX.encodeEntities(attribute_id)}" title="${MMX.encodeEntities(attribute.prompt)}">${attribute.prompt}</label>
+				<div class="dup-featured-product__product-attribute-select">
+					<select id="${MMX.encodeEntities(attribute_id)}" class="dup-featured-product__product-attribute-select__dropdown" data-attribute="${MMX.encodeEntities(attribute.code)}" name="Product_Attributes[${MMX.encodeEntities(index)}]:value" ${MMX.encodeEntities(required)}>
 						${attribute.options.map(option => this.renderProductContentAttributeSelectOption(attribute, index, option)).join('')}
 					</select>
 				</div>
@@ -614,14 +614,14 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 
 		return /*html*/`
 			${this.renderProductContentAttributeCommon(attribute, index, template)}
-			<div class="mmx-featured-product__product-attribute">
-				<label class="mmx-featured-product__product-attribute-label ${MMX.encodeEntities(required)}" for="${MMX.encodeEntities(attribute_id)}" title="${MMX.encodeEntities(attribute.prompt)}">${attribute.prompt}:&nbsp;<span data-hook="attribute-swatch-name"></span></label>
-				<div class="mmx-featured-product__product-attribute-select mmx-featured-product__product-attribute-select__swatch">
-					<select class="mmx-featured-product__product-attribute-select__dropdown" aria-labelledby="${MMX.encodeEntities(attribute_id)}" data-attribute="${MMX.encodeEntities(attribute.code)}" data-hook="attribute-swatch-select" name="Product_Attributes[${MMX.encodeEntities(index)}]:value" ${MMX.encodeEntities(required)}>
+			<div class="dup-featured-product__product-attribute">
+				<label class="dup-featured-product__product-attribute-label ${MMX.encodeEntities(required)}" for="${MMX.encodeEntities(attribute_id)}" title="${MMX.encodeEntities(attribute.prompt)}">${attribute.prompt}:&nbsp;<span data-hook="attribute-swatch-name"></span></label>
+				<div class="dup-featured-product__product-attribute-select dup-featured-product__product-attribute-select__swatch">
+					<select class="dup-featured-product__product-attribute-select__dropdown" aria-labelledby="${MMX.encodeEntities(attribute_id)}" data-attribute="${MMX.encodeEntities(attribute.code)}" data-hook="attribute-swatch-select" name="Product_Attributes[${MMX.encodeEntities(index)}]:value" ${MMX.encodeEntities(required)}>
 						${attribute.options.map(option => this.renderProductContentAttributeSwatchSelectOption(attribute, index, option)).join('')}
 					</select>
 				</div>
-				<div id="swatches" class="mmx-featured-product__product-attribute-swatch__swatches" aria-labelledby="${MMX.encodeEntities(attribute_id)}" role="group"></div>
+				<div id="swatches" class="dup-featured-product__product-attribute-swatch__swatches" aria-labelledby="${MMX.encodeEntities(attribute_id)}" role="group"></div>
 			</div>
 		`;
 	}
@@ -649,10 +649,10 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 
 		return /*html*/`
 			${this.renderProductContentAttributeCommon(attribute, index, template)}
-			<div class="mmx-featured-product__product-attribute">
-				<label class="mmx-featured-product__product-attribute-checkbox" title="${MMX.encodeEntities(attribute.prompt)}">
-					<input class="mmx-featured-product__product-attribute-checkbox__input" data-attribute="${MMX.encodeEntities(attribute.code)}" data-option-price="${MMX.encodeEntities(attribute.price)}" data-regular-price="" type="checkbox" name="Product_Attributes[${MMX.encodeEntities(index)}]:value" ${MMX.encodeEntities(required)}>
-					<span class="mmx-featured-product__product-attribute-checkbox__caption">${encoded_image_template}</span>
+			<div class="dup-featured-product__product-attribute">
+				<label class="dup-featured-product__product-attribute-checkbox" title="${MMX.encodeEntities(attribute.prompt)}">
+					<input class="dup-featured-product__product-attribute-checkbox__input" data-attribute="${MMX.encodeEntities(attribute.code)}" data-option-price="${MMX.encodeEntities(attribute.price)}" data-regular-price="" type="checkbox" name="Product_Attributes[${MMX.encodeEntities(index)}]:value" ${MMX.encodeEntities(required)}>
+					<span class="dup-featured-product__product-attribute-checkbox__caption">${encoded_image_template}</span>
 				</label>
 			</div>
 		`;
@@ -673,9 +673,9 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 
 		if (this.product.subscriptionsettings.mandatory) {
 			return /*html*/`
-				<label class="mmx-featured-product__product-attribute-label ${MMX.encodeEntities(required)}" for="l-subscription" title="Subscribe">Select Subscription</label>
-				<div class="mmx-featured-product__product-attribute-select">
-					<select id="l-subscription" class="mmx-featured-product__product-attribute-select__dropdown" name="Product_Subscription_Term_ID" ${MMX.encodeEntities(required)}>
+				<label class="dup-featured-product__product-attribute-label ${MMX.encodeEntities(required)}" for="l-subscription" title="Subscribe">Select Subscription</label>
+				<div class="dup-featured-product__product-attribute-select">
+					<select id="l-subscription" class="dup-featured-product__product-attribute-select__dropdown" name="Product_Subscription_Term_ID" ${MMX.encodeEntities(required)}>
 						${this.product.subscriptionterms.map(term => this.renderProductContentAttributeSubscriptionOption(term)).join('')}
 					</select>
 				</div>
@@ -683,9 +683,9 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 		}
 
 		return /*html*/`
-			<label class="mmx-featured-product__product-attribute-label ${MMX.encodeEntities(required)}" for="l-subscription" title="Subscribe">Select Subscription</label>
-			<div class="mmx-featured-product__product-attribute-select">
-				<select id="l-subscription" class="mmx-featured-product__product-attribute-select__dropdown" name="Product_Subscription_Term_ID" ${MMX.encodeEntities(required)}>
+			<label class="dup-featured-product__product-attribute-label ${MMX.encodeEntities(required)}" for="l-subscription" title="Subscribe">Select Subscription</label>
+			<div class="dup-featured-product__product-attribute-select">
+				<select id="l-subscription" class="dup-featured-product__product-attribute-select__dropdown" name="Product_Subscription_Term_ID" ${MMX.encodeEntities(required)}>
 					<option value="0">One Time Purchase</option>
 					${this.product.subscriptionterms.map(term => this.renderProductContentAttributeSubscriptionOption(term)).join('')}
 				</select>
@@ -713,7 +713,7 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 		return /*html*/`
 			<mmx-text
 				part="product-description"
-				class="mmx-featured-product__product-description"
+				class="dup-featured-product__product-description"
 				data-max-chars="${MMX.encodeEntities(max_chars)}"
 				data-trim-suffix="..."
 				data-style="${MMX.encodeEntities(this.getPropValue('description-style'))}"
@@ -732,7 +732,7 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 		}
 
 		return /*html*/`
-			<div class="mmx-featured-product__product-add-to-cart">
+			<div class="dup-featured-product__product-add-to-cart">
 				<mmx-button
 					part="button"
 					data-type="submit"
@@ -762,7 +762,7 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 	}
 
 	getButton() {
-		return this.shadowRoot.querySelector('.mmx-featured-product__product-add-to-cart > mmx-button');
+		return this.shadowRoot.querySelector('.dup-featured-product__product-add-to-cart > mmx-button');
 	}
 
 	buildAttributeID(attribute) {
@@ -801,7 +801,7 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 			missing_radio_msg:				'',
 
 			getElementById:					(id) => this.shadowRoot.getElementById(id),
-			getElementsByTagName:			(tagName) => this.shadowRoot.querySelector('.mmx-featured-product').getElementsByTagName(tagName)
+			getElementsByTagName:			(tagName) => this.shadowRoot.querySelector('.dup-featured-product').getElementsByTagName(tagName)
 		};
 
 		attributemachine = new AttributeMachine(product_data);
@@ -887,7 +887,7 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 							swatch_color			= swatch_element.getAttribute('data-code');
 
 							if (element_swatch_image && swatch_color === swatch_select.options[swatch_select.selectedIndex].value) {
-								element_swatch_image.classList.add('mmx-featured-product__product-attribute-swatch__swatches--active');
+								element_swatch_image.classList.add('dup-featured-product__product-attribute-swatch__swatches--active');
 							}
 						});
 					}
