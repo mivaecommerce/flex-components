@@ -212,7 +212,7 @@ class DuplicatedFeaturedProduct extends MMX_Element {
 	}
 
 	themeResourcePattern = /family=Inter/i;
-	styleResourceCodes = ['mmx-base', 'mmx-button', 'mmx-hero', 'mmx-hero-slider', 'mmx-featured-product'];
+	styleResourceCodes = ['mmx-base', 'mmx-button', 'mmx-hero', 'mmx-hero-slider', 'dup-featured-product'];
 
 	constructor() {
 		super();
