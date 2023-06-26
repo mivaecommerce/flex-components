@@ -993,8 +993,8 @@
 	],
 	"styles": [
 		{
-			"filepath": "src\/css\/mmx-featured-product.css",
-			"resource_code": "mmx-featured-product",
+			"filepath": "src\/css\/dup-featured-product.css",
+			"resource_code": "dup-featured-product",
 			"attributes": [
 				{
 					"name": "type",
