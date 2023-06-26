@@ -1415,7 +1415,7 @@
             "type": "string"
         },
         "managed": {
-            "description": "Boolean to indicate if the JS/CSS Resources should be module managed resources or not.\n   `managed: true` - users *cannot* modify or delete the CSS/JS Resources of the Flex Component.\n   `managed: false` - users *can* modify or delete the CSS/JS Resources of the Flex Component\n   Default is `true`",
+            "description": "Boolean to indicate if the JS/CSS Resources should be module managed resources or not.\n   managed: true - users *cannot* modify or delete the CSS/JS Resources of the Flex Component.\n   managed: false - users *can* modify or delete the CSS/JS Resources of the Flex Component\n   Default is `true`",
             "type": "boolean"
         },
         "name": {

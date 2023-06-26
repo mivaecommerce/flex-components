@@ -1,44 +1,44 @@
 // Flex Component
 export interface FlexComponent {
 	/** The flex component code */
-	code: string,
+	code: string;
 	/** The flex component name */
-	name: string,
+	name: string;
 	/** The flex version number (ex. 1.0.0) */
-	version: string,
+	version: string;
 	/** The flex component's preview image. Should be the XML source of an SVG file */
-	preview: string,
+	preview: string;
 	/** This is the Miva resource group the CSS/JS will get output from. */
-	resourcegroup_code: string,
+	resourcegroup_code: string;
 	/** Path to the initialization template. This is a .mvt text file that can contain Miva template logic. */
-	initialization_template?: string,
+	initialization_template?: string;
 	/** Path to the instance template. This is a .mvt text file that can contain Miva template logic. */
-	instance_template?: string,
+	instance_template?: string;
 	/** This is used to categorize the component in Page Builder and determines which icon is shown next to the component's name in Page Builder */
-	category?: 'category-carousel' | 'featured-product' | 'image-across' | 'image-slider' | 'image-text' | 'image' | 'non-element' | 'product-carousel' | 'text-area' | 'text-banner' | 'text-editor' | 'text-utility' | 'video',
+	category?: 'category-carousel' | 'featured-product' | 'image-across' | 'image-slider' | 'image-text' | 'image' | 'non-element' | 'product-carousel' | 'text-area' | 'text-banner' | 'text-editor' | 'text-utility' | 'video';
 	/** Array of JSON objects for the properties the component will provide in admin for the end user */
-	properties?: Array<Property|Group>,
+	properties?: Array<Property|Group>;
 	/** Array of JSON objects for the properties that will appear in the advanced tab */
-	advanced_properties?: Array<Property|Group>,
+	advanced_properties?: Array<Property|Group>;
 	/** Object containing the default values for all properties */
-	defaults?: object,
+	defaults?: object;
 	/** Array of {@link FlexComponentImages} that allows you to include images in your component that will get added to the server/store upon import. */
-	images?: Array<FlexComponentImages>
+	images?: Array<FlexComponentImages>;
 	/** Array of {@link FlexComponentResource} objects for the JavaScript Resources that the component should create */
-	scripts?: Array<FlexComponentResource>
+	scripts?: Array<FlexComponentResource>;
 	/** Array of {@link FlexComponentResource} objects for the CSS Resources that the component should create */
-	styles?: Array<FlexComponentResource>,
+	styles?: Array<FlexComponentResource>;
 	/** Object where the key is a Component's Code and value is the Version number with an optional leading >, >=, <, <=, ex:"mmx-base": ">=10.07.00" */
-	depends?: object
+	depends?: object;
 	/** Object where the key is a Component's Code and value is the Version number with an optional leading >, >=, <, <=, ex: "mmx-base": ">=10.07.00" */
-	conflicts?: object,
+	conflicts?: object;
 	/**
 	 * Boolean to indicate if the JS/CSS Resources should be module managed resources or not.
-	 *    `managed: true` - users *cannot* modify or delete the CSS/JS Resources of the Flex Component.
-	 *    `managed: false` - users *can* modify or delete the CSS/JS Resources of the Flex Component
+	 *    managed: true - users *cannot* modify or delete the CSS/JS Resources of the Flex Component.
+	 *    managed: false - users *can* modify or delete the CSS/JS Resources of the Flex Component
      *    Default is `true`
 	 */
-	managed?: boolean
+	managed?: boolean;
 }
 
 // Utility Types
@@ -50,7 +50,7 @@ export type Booleanish =  true | false | 0 | 1;
 export type Value = string | number;
 
 /** An array of {@link Property} or {@link Group} items */
-export type PropertyList = Array<Property|Group>
+export type PropertyList = Array<Property|Group>;
 
 /**
  * A list of the possible Miva Icon options.
@@ -61,8 +61,8 @@ export type MivaIcons = | 'add' | 'assign' | 'bookmark' | 'cancel' | 'catalog' |
 
 /** An object depicting the HTML attribute name & value pair */
 export interface HtmlAttribute {
-	name: string
-	value: Value
+	name: string;
+	value: Value;
 }
 
 /**
@@ -72,13 +72,13 @@ export interface HtmlAttribute {
 */
 export interface FlexComponentImages {
 	/** The source_filepath is the path of the image in the local flex folder (.tar.bz2). */
-	source_filepath: string,
+	source_filepath: string;
 	/**
 	The destination_filepath is where you would like the image copied on the Miva server.
 
 	There is an optional %STORE_ID% placeholder value you can use in the destination path which will get replaced with the actual store id (ex: 00000001) upon import
 	*/
-	destination_filepath: string
+	destination_filepath: string;
 }
 
 /**
@@ -88,10 +88,10 @@ export interface FlexComponentImages {
  */
 export interface FlexComponentResource {
 	/** The path of the JavaScript/CSS Resource in the local flex folder (i.e. .tar.bz2) */
-	filepath: string,
-	resource_code: string,
+	filepath: string;
+	resource_code: string;
 	/** An array of {@link HtmlAttribute} objects defining the name & value of any attributes that should be output on the JS/CSS resource */
-	attributes?: Array<HtmlAttribute>
+	attributes?: Array<HtmlAttribute>;
 }
 
 // Group
@@ -101,12 +101,12 @@ export interface FlexComponentResource {
  * A group is collapsible and can have an optionally enable/disable the ability to toggle it on/off
  */
 export interface Group {
-	code: string
-	prompt: string
-	type: 'group'
-	collapsed?: Booleanish
-	can_disable?: Booleanish
-	properties?: Array<Property|Group>
+	code: string;
+	prompt: string;
+	type: 'group';
+	collapsed?: Booleanish;
+	can_disable?: Booleanish;
+	properties?: Array<Property|Group>;
 }
 
 /**
@@ -132,22 +132,22 @@ export type Property =
 	| DistributedSliderProperty
 	| ListProperty
 	| GroupListProperty
-	| TextEditorProperty
+	| TextEditorProperty;
 
 /** The main fields that apply to all {@link Property} items  */
 export interface BaseProperty {
 	/** This is the unique code that identifies the property */
-	code: string
+	code: string;
 	/** Controls the UI for the input device people use within Page Builder */
-	type: string
+	type: string;
 	/** This is the text the end user will see in the Miva admin for this property */
-	prompt: string
+	prompt: string;
 	/**
 	 * Designate if the property should be required by the user when editing through Page Builder's UI
 
 	 * @default false
 	 */
-	required?: Booleanish
+	required?: Booleanish;
 }
 
 // Text Settings
@@ -159,7 +159,7 @@ export interface BaseProperty {
  * If included it will output a Settings icon within the text box to enable advanced editing of the Text.
 */
 export interface TextSettings {
-	fields: Array<TextSetting>
+	fields: Array<TextSetting>;
 }
 
 /** Additional settings that are applied to existing {@link Property} objects to control functionality specific to the {@link TextSetting} items in {@link TextSettings} */
@@ -175,18 +175,18 @@ export interface AdditionalTextSettings {
 	 * @example
 	 * ['mobile', 'tablet', 'desktop']
 	 */
-	pseudoclasses: Array<string>
+	pseudoclasses: Array<string>;
 	/**
 	 * Controls the width of the property
 	 * @default 'full'
 	 */
-	size?: 'full' | 'half' | 'one-third' | 'two-thirds'
+	size?: 'full' | 'half' | 'one-third' | 'two-thirds';
 	/** Used to indicate you want CSS styles to be generated by flex (ex. font-size, color, background-color, etc.)  */
-	style?: string
+	style?: string;
 	/** A string to prefix to the output of the value the user provides. Only applies when `style` is also used. Could be used to output the "calc(" of a CSS property value */
-	style_prefix?: Value
+	style_prefix?: Value;
 	/** A string to suffix to the output of the value the user provides. Only applies when `style` is also used. Could be used to output the "px" of a CSS property value */
-	style_suffix?: Value
+	style_suffix?: Value;
 }
 
 /**
@@ -202,12 +202,12 @@ export type TextSetting = Property & AdditionalTextSettings
  * {@link NumberProperty}
  */
 export interface BaseTextProperty extends BaseProperty {
-	type: 'text'
-	textsettings?: TextSettings
-	label?: Value
-	placeholder?: Value
-	validation_message?: string
-	validation_pattern?: string
+	type: 'text';
+	textsettings?: TextSettings;
+	label?: Value;
+	placeholder?: Value;
+	validation_message?: string;
+	validation_pattern?: string;
 }
 
 /**
@@ -216,9 +216,9 @@ export interface BaseTextProperty extends BaseProperty {
  * Similar to <input type="text|url|password|tel">
  */
 export interface TextProperty extends BaseTextProperty {
-	text_type?: 'text' | 'email' | 'url' | 'password' | 'tel'
-	minlength?: number
-	maxlength?: number
+	text_type?: 'text' | 'email' | 'url' | 'password' | 'tel';
+	minlength?: number;
+	maxlength?: number;
 }
 
 /**
@@ -227,19 +227,19 @@ export interface TextProperty extends BaseTextProperty {
  * Similar to <input type="number">
  */
 export interface NumberProperty extends BaseTextProperty {
-	text_type: 'number'
-	min?: number,
-	max?: number,
-	step?: number
+	text_type: 'number';
+	min?: number;
+	max?: number;
+	step?: number;
 }
 
 export interface DateProperty extends BaseProperty {
-	type: 'date' | 'datetime'
-	serverdate?: Booleanish
-	min?: string
-	max?: string
-	validation_message?: string
-	validation_pattern?: string
+	type: 'date' | 'datetime';
+	serverdate?: Booleanish;
+	min?: string;
+	max?: string;
+	validation_message?: string;
+	validation_pattern?: string;
 }
 
 /**
@@ -248,9 +248,9 @@ export interface DateProperty extends BaseProperty {
  * Similar to <textarea>
  */
 export interface TextAreaProperty extends BaseProperty {
-	type: 'textarea'
-	textsettings?: TextSettings
-	placeholder?: Value
+	type: 'textarea';
+	textsettings?: TextSettings;
+	placeholder?: Value;
 }
 
 /**
@@ -259,7 +259,7 @@ export interface TextAreaProperty extends BaseProperty {
  * Similar to <input type="checkbox">
  */
 export interface CheckboxProperty extends BaseProperty {
-	type: 'checkbox'
+	type: 'checkbox';
 }
 
 
@@ -269,8 +269,8 @@ export interface CheckboxProperty extends BaseProperty {
  * Similar to <option>
  */
 export interface Option {
-	text: Value
-	value: Value
+	text: Value;
+	value: Value;
 }
 
 /**
@@ -279,8 +279,8 @@ export interface Option {
  * Similar to <select>
  */
 export interface SelectProperty extends BaseProperty {
-	type: 'select'
-	options: Array<Option>
+	type: 'select';
+	options: Array<Option>;
 }
 
 /**
@@ -289,8 +289,8 @@ export interface SelectProperty extends BaseProperty {
  * Similar to <input type="radio">
  */
 export interface RadioProperty extends BaseProperty {
-	type: 'radio'
-	options: Array<Option>
+	type: 'radio';
+	options: Array<Option>;
 }
 
 /**
@@ -300,17 +300,17 @@ export interface RadioProperty extends BaseProperty {
  * @see https://getbootstrap.com/docs/5.0/forms/checks-radios/#radio-toggle-buttons
  */
 export interface SelectorProperty extends BaseProperty {
-	type: 'selector'
-	options: Array<Option | SelectorOption>
+	type: 'selector';
+	options: Array<Option | SelectorOption>;
 }
 
 /**
  * Special version of an {@link Option} used on {@link SelectorProperty} that allows you to show an icon from the {@link MivaIcons} set
  */
 export interface SelectorOption {
-	type: 'icon',
-	text: MivaIcons,
-	value: Value
+	type: 'icon';
+	text: MivaIcons;
+	value: Value;
 }
 
 /**
@@ -319,16 +319,16 @@ export interface SelectorOption {
  * Similar to <input type="color">
  */
 export interface ColorProperty extends BaseProperty {
-	type: 'color'
+	type: 'color';
 }
 
 
 /** Image input allows users to upload or find any image in Miva's Image Management */
 export interface ImageProperty extends BaseProperty {
-	type: 'image'
-	width?: number
-	height?: number
-	responsive_images?: Array<ResponsiveImage>
+	type: 'image';
+	width?: number;
+	height?: number;
+	responsive_images?: Array<ResponsiveImage>;
 }
 
 /**
@@ -336,26 +336,26 @@ export interface ImageProperty extends BaseProperty {
  *
  * Especially helpful for designating images in <picture> and <source> elements that target specific media/devices  */
 export interface ResponsiveImage {
-	code: string
-	prompt: Value
-	width?: number
-	height?: number
+	code: string;
+	prompt: Value;
+	width?: number;
+	height?: number;
 }
 
 /** Category look-up input */
 export interface CategoryProperty extends BaseProperty {
-	type: 'category'
+	type: 'category';
 }
 
 /** Product look-up input */
 export interface ProductProperty extends BaseProperty {
-	type: 'product'
+	type: 'product';
 }
 
 /** Link input allows users to link to any product, category, or page */
 export interface LinkProperty extends BaseProperty {
-	type: 'link'
-	default_type?: 'product' | 'category' | 'page'
+	type: 'link';
+	default_type?: 'product' | 'category' | 'page';
 }
 
 /**
@@ -364,15 +364,15 @@ export interface LinkProperty extends BaseProperty {
  * Similar to <input type="range">
  */
 export interface SliderProperty extends BaseProperty {
-	type: 'slider'
+	type: 'slider';
 	/**  */
-	range_low: number
-	range_high: number
+	range_low: number;
+	range_high: number;
 	/** use -1 to use default scale */
-	scale: number
+	scale: number;
 	/** use -1 to use default precision */
-	precision: number
-	label?: Value
+	precision: number;
+	label?: Value;
 }
 
 /**
@@ -381,7 +381,7 @@ export interface SliderProperty extends BaseProperty {
  * Similar to <input type="range">, but ideal for ranges from 0-100 (i.e widths & percentages)
  */
 export interface DistributedSliderProperty extends BaseProperty {
-	type: 'distributedslider'
+	type: 'distributedslider';
 	/**
 	 * The breakpoints are calculated as a value between 0 and 100 steps divided by the number of breaks
 	 *
@@ -390,26 +390,26 @@ export interface DistributedSliderProperty extends BaseProperty {
 	 * @example
 	 * 4 // four breaks yields five segments and six possible values: 0, 20, 40, 60, 80, & 100
 	 */
-	breaks: number
+	breaks: number;
 }
 
 /** List properties allow you to create list of other properties that can be added or removed by the end user. An example would be a list of images used for a hero slider. */
 export interface ListProperty extends BaseProperty {
-	type: 'list'
-	list_type: 'text' | 'image' | 'product' | 'category' | 'color' | 'date' | 'datetime' | 'group'
+	type: 'list';
+	list_type: 'text' | 'image' | 'product' | 'category' | 'color' | 'date' | 'datetime' | 'group';
 	/** minimum amount of items that must exist in the list */
-	min_count?: number
+	min_count?: number;
 	/** maximum amount of items that must exist in the list */
-	max_count?: number
+	max_count?: number;
 	/** defines the default value the "Add New" link is clicked. */
-	template?: object
+	template?: object;
 }
 
 export interface GroupListProperty extends ListProperty {
-	list_type: 'group'
+	list_type: 'group';
 	/** used to tell the outer list what property to use for the display (ie, you change this field in the inner group, set the title of the list entry to that value) */
-	item_prompt_property?: string
-	properties?: Array<Property|Group>
+	item_prompt_property?: string;
+	properties?: Array<Property|Group>;
 }
 
 /**
@@ -418,5 +418,5 @@ export interface GroupListProperty extends ListProperty {
  * A property that launches a [Miva Rich Text Editor input](https://docs.miva.com/how-to-guides/rich-text-editor) in a modal.
  */
 export interface TextEditorProperty extends BaseProperty {
-	type: 'texteditor'
+	type: 'texteditor';
 }
