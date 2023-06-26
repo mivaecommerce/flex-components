@@ -10,9 +10,9 @@ This repo contains a collection of Flex Component: examples, schema tools, and w
 - [mmx-base](examples/mmx-base) - A copy of `mmx-base` is provided to review the:
 	- [mmx-base.css CSS Variables](examples/mmx-base/src/css/mmx-base.css) that can be used in mmx-customizations.
 	- [mmx-base.js](examples/mmx-base/src/js/mmx-base.js) to view its JavaScript functions and web-component methods
-- [Flex Property Kitchen Sink](examples/ex-kitchen-sink) - Example showing many different flex property types and settings
+- [Flex Property Kitchen Sink](examples/ex-kitchen-sink/flex.json) - Example showing many different flex property types and settings
 
-#### Various Flex Component Architecures
+#### Various Flex Component Architectures
 
 - [Example of basic Flex Component](examples/ex-basic)
 	- No MMX assets, no dependencies, no web-components, just a basic Flex Component.

@@ -43,7 +43,7 @@ This repo shows how to duplicate an existing Flex Component so it can be customi
 		1. Remove the corresponding `flex.json > styles > attributes` item
 		1. Remove the corresponding `src/css/*.css` file
 1. Optionally, change any other files of the component to add your custom functionality (ex. init.mvt, instance.mvt, flex.json properties, other CSS & JS files, etc.)
-1. Review and confirm/update the `flex.json > depends` & `flex.json > conflics` values
+1. Review and confirm/update the `flex.json > depends` & `flex.json > conflicts` values
 
 ### Import your component
 
@@ -70,7 +70,7 @@ This repo shows how to duplicate an existing Flex Component so it can be customi
 	1. `templates/flex-initialization-template-dup-featured-product.mvt`
 	1. `templates/flex-instance-template-dup-featured-product.mvt`
 1. `$ mmt push --notes "updated foo"` to push your changes up
-1. Preview your changes and repeat mmt pushes unil you are finished
+1. Preview your changes and repeat mmt pushes until you are finished
 
 ### Distribute your component
 
