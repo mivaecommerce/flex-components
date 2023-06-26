@@ -977,8 +977,8 @@
 	"preview": "src/images/preview.svg",
 	"scripts": [
 		{
-			"filepath": "src\/js\/mmx-featured-product.js",
-			"resource_code": "mmx-featured-product",
+			"filepath": "src\/js\/dup-featured-product.js",
+			"resource_code": "dup-featured-product",
 			"attributes": [
 				{
 					"name": "type",
