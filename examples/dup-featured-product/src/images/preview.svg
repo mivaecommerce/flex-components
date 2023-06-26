@@ -4,8 +4,8 @@
       <rect id="Rectangle_3173" data-name="Rectangle 3173" width="200" height="200" fill="#bbbec3"/>
     </clipPath>
   </defs>
-  <g id="Featured_Product" data-name="Featured Product" transform="translate(0 -2895)">
-    <g id="Featured_Product-2" data-name="Featured Product" transform="translate(110 -463)">
+  <g id="Featured_Product" data-name="Duplicated Featured Product" transform="translate(0 -2895)">
+    <g id="Featured_Product-2" data-name="Duplicated Featured Product" transform="translate(110 -463)">
       <rect id="Rectangle_3232" data-name="Rectangle 3232" width="640" height="640" rx="16" transform="translate(80 3398)" fill="#cfd2d6"/>
       <g id="Group_6141" data-name="Group 6141" transform="translate(300 3618)">
         <g id="Group_6082" data-name="Group 6082" clip-path="url(#clip-path)">
@@ -14,7 +14,7 @@
         </g>
       </g>
       <g id="Group_6553" data-name="Group 6553" transform="translate(-41 -4)">
-        <text id="Featured_Product_Name" data-name="Featured Product Name" transform="translate(880 3594)" fill="#494a53" font-size="40" font-family="Helvetica-Bold, Helvetica" font-weight="700"><tspan x="0" y="0">Featured Product Name</tspan></text>
+        <text id="Featured_Product_Name" data-name="Duplicated Featured Product Name" transform="translate(880 3594)" fill="#494a53" font-size="40" font-family="Helvetica-Bold, Helvetica" font-weight="700"><tspan x="0" y="0">Duplicated Featured Product Name</tspan></text>
         <text id="_39.99" data-name="$39.99" transform="translate(880 3659)" fill="#494a53" font-size="24" font-family="Helvetica"><tspan x="0" y="0">$39.99</tspan></text>
         <text id="_59.99" data-name="$59.99" transform="translate(980 3659)" fill="#969da8" font-size="24" font-family="Helvetica" text-decoration="line-through"><tspan x="0" y="0">$59.99</tspan></text>
         <g id="Rectangle_3070" data-name="Rectangle 3070" transform="translate(880 3719)" fill="#fff" stroke="#cfd2d6" stroke-width="2">
