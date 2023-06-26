@@ -1,7 +1,7 @@
 /**
- * MMX / FEATURED PRODUCT
+ * Duplicated Featured Product
  */
-class MMX_FeaturedProduct extends MMX_Element {
+class DuplicatedFeaturedProduct extends MMX_Element {
 
 	static get props() {
 		return {
@@ -1084,6 +1084,6 @@ class MMX_FeaturedProduct extends MMX_Element {
 	}
 }
 
-if (!customElements.get('mmx-featured-product')) {
-	customElements.define('mmx-featured-product', MMX_FeaturedProduct);
+if (!customElements.get('dup-featured-product')) {
+	customElements.define('dup-featured-product', DuplicatedFeaturedProduct);
 }
