@@ -985,10 +985,6 @@
 					"value": "text\/javascript"
 				},
 				{
-					"name": "integrity",
-					"value": "sha256-H2KD9evLnPTh9UwmLt8rfNkKYGCgkI5wwCxc0nc+mpM\u003D sha384-Ri1fmxi0lNdbyAxUsqZnnR5g2JkSQskBPzemi0CWpPnJ5zKR7hl7\/gwQh6kdt\/JG sha512-yKdvJd+bZLHa8qdrfcwCajE4IxHx\/AoDVlaoiA00saXafhlZLOjcQIBf9k\/Te8+rrTSPcEdari2ojrCydyZzeQ\u003D\u003D"
-				},
-				{
 					"name": "crossorigin",
 					"value": "anonymous"
 				}
