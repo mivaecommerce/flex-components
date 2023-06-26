@@ -1,12 +1,12 @@
 {
-	"category": "text",
+	"category": "text-utility",
 	"code": "mmx-example",
 	"initialization_template": "src/templates/init.mvt",
 	"instance_template": "src/templates/instance.mvt",
 	"preview": "src/images/preview.svg",
 	"name": "MMX Example",
 	"resourcegroup_code": "mmx-example",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"properties": [
 		{
 			"code": "content",
@@ -91,5 +91,9 @@
 		"color": {
 			"value": "#000099"
 		}
-	}
+	},
+	"depends": {
+		"mmx-base": "10.07.00",
+		"mmx-text": "10.07.00"
+    }
 }
