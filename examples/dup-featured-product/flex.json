@@ -3,7 +3,7 @@
 	"name": "Duplicated Featured Product",
 	"type": "component",
 	"version": "1.0.0",
-	"managed": true,
+	"managed": false,
 	"resourcegroup_code": "dup-featured-product",
 	"category": "featured-product",
 	"properties": [
