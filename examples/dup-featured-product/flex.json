@@ -1,10 +1,10 @@
 {
-	"code": "mmx-featured-product",
-	"name": "Featured Product",
+	"code": "dup-featured-product",
+	"name": "Duplicated Featured Product",
 	"type": "component",
-	"version": "10.07.00",
+	"version": "1.0.0",
 	"managed": true,
-	"resourcegroup_code": "mmx-featured-product",
+	"resourcegroup_code": "dup-featured-product",
 	"category": "featured-product",
 	"properties": [
 		{
