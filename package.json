@@ -2,7 +2,7 @@
 	"scripts": {
 		"setup": "npm install && npm run build",
 		"build": "npm run build-components && npm run build-schema",
-		"build-components": "cd examples && cd ex-kitchen-sink && tar -cvjSf ../ex-kitchen-sink.tar.bz2 * && cd ../ex-web-component && tar -cvjSf ../ex-web-component.tar.bz2 * && cd ../ex-comparison-table && tar -cvjSf ../ex-comparison-table.tar.bz2 * && cd ../ex-faqs && tar -cvjSf ../ex-faqs.tar.bz2 * && cd ../mmx-example && tar -cvjSf ../mmx-example.tar.bz2 * && cd ../ex-kitchen-sink && tar -cvjSf ../ex-kitchen-sink.tar.bz2 * && cd ../ex-basic && tar -cvjSf ../ex-basic.tar.bz2 * && cd ../dup-featured-product && tar -cvjSf ../dup-featured-product.tar.bz2 *",
+		"build-components": "cd examples && find . -type d -depth 1 -execdir sh -c 'cd {} && tar -cvjSf ../{}.tar.bz2 *' \\;",
 		"build-schema": "npm exec typescript-json-schema 'schema/types.d.ts' FlexComponent > schema/types.json"
 	},
 	"type": "module",
