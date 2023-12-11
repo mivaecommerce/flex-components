@@ -2,8 +2,8 @@
 	"code": "ex-faqs",
 	"name": "Example: FAQs",
 	"type": "component",
-	"version": "1.0.0",
 	"managed": false,
+	"version": "1.0.0",
 	"category": "text-utility",
 	"properties": [
 		{

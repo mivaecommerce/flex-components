@@ -1,6 +1,8 @@
 {
 	"code": "ex-kitchen-sink",
 	"name": "Example: Kitchen Sink",
+	"type": "component",
+	"managed": false,
 	"version": "1.0.0",
 	"resourcegroup_code": "ex-kitchen-sink",
 	"initialization_template": "",

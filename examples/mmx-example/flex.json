@@ -1,6 +1,8 @@
 {
 	"category": "text-utility",
 	"code": "mmx-example",
+	"type": "component",
+	"managed": false,
 	"initialization_template": "src/templates/init.mvt",
 	"instance_template": "src/templates/instance.mvt",
 	"preview": "src/images/preview.svg",

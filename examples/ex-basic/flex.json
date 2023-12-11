@@ -1,6 +1,8 @@
 {
 	"code": "ex-basic",
 	"name": "Example: Basic",
+	"type": "component",
+	"managed": false,
 	"version": "1.0.0",
 	"resourcegroup_code": "ex-basic",
 	"initialization_template": "src/templates/init.mvt",

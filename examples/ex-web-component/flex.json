@@ -1,6 +1,8 @@
 {
 	"code": "ex-web-component",
 	"name": "Example: Web Component",
+	"type": "component",
+	"managed": false,
 	"version": "1.0.0",
 	"resourcegroup_code": "ex-web-component",
 	"initialization_template": "src/templates/init.mvt",
