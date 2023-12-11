@@ -1,15 +1,45 @@
 // Flex Component
-export interface FlexComponent {
+export interface BaseFlexComponent {
 	/** The flex component code */
 	code: string;
 	/** The flex component name */
 	name: string;
+	/**
+	 * Indicate the scope & capabilities of the flex component.
+	 *    type: 'component' = The flex component will be exposed in Page Builder UI's component selector. Supports all capabilities: properties, advanced_properties, images,  scripts, styles, initialization_template, and instance_template.
+	 *    type: 'library' = The flex component will not be exposed in the Page Builder UI's component selector. Mainly supports scripts & styles capabilities.
+	 *    default is 'component'
+	*/
+	type: 'component' | 'library';
+	/**
+	 * Boolean to indicate if the JS/CSS Resources should be module managed resources or not.
+	 *    managed: true - Users *cannot* modify or delete the CSS/JS Resources of the Flex Component.
+	 *    managed: false - Users *can* modify or delete the CSS/JS Resources of the Flex Component
+     *    default is true
+	 */
+	managed?: boolean;
 	/** The flex version number (ex. 1.0.0) */
 	version: string;
-	/** The flex component's preview image. Should be the XML source of an SVG file */
-	preview: string;
 	/** This is the Miva resource group the CSS/JS will get output from. */
 	resourcegroup_code: string;
+	/** Array of {@link FlexComponentImages} that allows you to include images in your component that will get added to the server/store upon import. */
+	images?: Array<FlexComponentImages>;
+	/** Array of {@link FlexComponentResource} objects for the JavaScript Resources that the component should create */
+	scripts?: Array<FlexComponentResource>;
+	/** Array of {@link FlexComponentResource} objects for the CSS Resources that the component should create */
+	styles?: Array<FlexComponentResource>;
+	/** Object where the key is a Component's Code and value is the Version number with an optional leading >, >=, <, <=, ex:"mmx-base": ">=10.07.00" */
+	depends?: object;
+	/** Object where the key is a Component's Code and value is the Version number with an optional leading >, >=, <, <=, ex: "mmx-base": ">=10.07.00" */
+	conflicts?: object;
+}
+
+export interface FlexComponentTypeLibrary extends BaseFlexComponent {
+	type: 'library';
+}
+
+export interface FlexComponentTypeComponent extends BaseFlexComponent {
+	type: 'component';
 	/** Path to the initialization template. This is a .mvt text file that can contain Miva template logic. */
 	initialization_template?: string;
 	/** Path to the instance template. This is a .mvt text file that can contain Miva template logic. */
@@ -22,24 +52,11 @@ export interface FlexComponent {
 	advanced_properties?: Array<Property|Group>;
 	/** Object containing the default values for all properties */
 	defaults?: object;
-	/** Array of {@link FlexComponentImages} that allows you to include images in your component that will get added to the server/store upon import. */
-	images?: Array<FlexComponentImages>;
-	/** Array of {@link FlexComponentResource} objects for the JavaScript Resources that the component should create */
-	scripts?: Array<FlexComponentResource>;
-	/** Array of {@link FlexComponentResource} objects for the CSS Resources that the component should create */
-	styles?: Array<FlexComponentResource>;
-	/** Object where the key is a Component's Code and value is the Version number with an optional leading >, >=, <, <=, ex:"mmx-base": ">=10.07.00" */
-	depends?: object;
-	/** Object where the key is a Component's Code and value is the Version number with an optional leading >, >=, <, <=, ex: "mmx-base": ">=10.07.00" */
-	conflicts?: object;
-	/**
-	 * Boolean to indicate if the JS/CSS Resources should be module managed resources or not.
-	 *    managed: true - users *cannot* modify or delete the CSS/JS Resources of the Flex Component.
-	 *    managed: false - users *can* modify or delete the CSS/JS Resources of the Flex Component
-     *    Default is `true`
-	 */
-	managed?: boolean;
+	/** The flex component's preview image. Should be the XML source of an SVG file */
+	preview: string;
 }
+
+export type FlexComponent = FlexComponentTypeLibrary | FlexComponentTypeComponent;
 
 // Utility Types
 

@@ -1,5 +1,13 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
+    "anyOf": [
+        {
+            "$ref": "#/definitions/FlexComponentTypeLibrary"
+        },
+        {
+            "$ref": "#/definitions/FlexComponentTypeComponent"
+        }
+    ],
     "definitions": {
         "AdditionalTextSettings": {
             "description": "Additional settings that are applied to existing {@link Property} objects to control functionality specific to the {@link TextSetting} items in {@link TextSettings}",
@@ -27,24 +35,21 @@
                     "type": "string"
                 },
                 "style_prefix": {
-                    "$ref": "#/definitions/Value",
-                    "description": "A string to prefix to the output of the value the user provides. Only applies when `style` is also used. Could be used to output the \"calc(\" of a CSS property value"
+                    "description": "A string to prefix to the output of the value the user provides. Only applies when `style` is also used. Could be used to output the \"calc(\" of a CSS property value",
+                    "type": [
+                        "string",
+                        "number"
+                    ]
                 },
                 "style_suffix": {
-                    "$ref": "#/definitions/Value",
-                    "description": "A string to suffix to the output of the value the user provides. Only applies when `style` is also used. Could be used to output the \"px\" of a CSS property value"
+                    "description": "A string to suffix to the output of the value the user provides. Only applies when `style` is also used. Could be used to output the \"px\" of a CSS property value",
+                    "type": [
+                        "string",
+                        "number"
+                    ]
                 }
             },
             "type": "object"
-        },
-        "Booleanish": {
-            "description": "A boolean-like value",
-            "enum": [
-                0,
-                1,
-                false,
-                true
-            ]
         },
         "CategoryProperty": {
             "description": "Category look-up input",
@@ -58,13 +63,20 @@
                     "type": "string"
                 },
                 "required": {
-                    "$ref": "#/definitions/Booleanish",
                     "default": false,
-                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "type": {
-                    "const": "category",
                     "description": "Controls the UI for the input device people use within Page Builder",
+                    "enum": [
+                        "category"
+                    ],
                     "type": "string"
                 }
             },
@@ -82,13 +94,20 @@
                     "type": "string"
                 },
                 "required": {
-                    "$ref": "#/definitions/Booleanish",
                     "default": false,
-                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "type": {
-                    "const": "checkbox",
                     "description": "Controls the UI for the input device people use within Page Builder",
+                    "enum": [
+                        "checkbox"
+                    ],
                     "type": "string"
                 }
             },
@@ -106,13 +125,20 @@
                     "type": "string"
                 },
                 "required": {
-                    "$ref": "#/definitions/Booleanish",
                     "default": false,
-                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "type": {
-                    "const": "color",
                     "description": "Controls the UI for the input device people use within Page Builder",
+                    "enum": [
+                        "color"
+                    ],
                     "type": "string"
                 }
             },
@@ -135,12 +161,23 @@
                     "type": "string"
                 },
                 "required": {
-                    "$ref": "#/definitions/Booleanish",
                     "default": false,
-                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "serverdate": {
-                    "$ref": "#/definitions/Booleanish"
+                    "description": "A boolean-like value",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "type": {
                     "description": "Controls the UI for the input device people use within Page Builder",
@@ -175,13 +212,20 @@
                     "type": "string"
                 },
                 "required": {
-                    "$ref": "#/definitions/Booleanish",
                     "default": false,
-                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "type": {
-                    "const": "distributedslider",
                     "description": "Controls the UI for the input device people use within Page Builder",
+                    "enum": [
+                        "distributedslider"
+                    ],
                     "type": "string"
                 }
             },
@@ -221,24 +265,15 @@
             },
             "type": "object"
         },
-        "Group": {
-            "description": "A group is just a container for other properties and a way to organize the properties on the screen logically and into nested groups.\n\nA group is collapsible and can have an optionally enable/disable the ability to toggle it on/off",
+        "FlexComponentTypeComponent": {
             "properties": {
-                "can_disable": {
-                    "$ref": "#/definitions/Booleanish"
-                },
-                "code": {
-                    "type": "string"
-                },
-                "collapsed": {
-                    "$ref": "#/definitions/Booleanish"
-                },
-                "prompt": {
-                    "type": "string"
-                },
-                "properties": {
+                "advanced_properties": {
+                    "description": "Array of JSON objects for the properties that will appear in the advanced tab",
                     "items": {
                         "anyOf": [
+                            {
+                                "$ref": "#/definitions/Group"
+                            },
                             {
                                 "$ref": "#/definitions/TextProperty"
                             },
@@ -292,16 +327,336 @@
                             },
                             {
                                 "$ref": "#/definitions/TextEditorProperty"
-                            },
+                            }
+                        ]
+                    },
+                    "type": "array"
+                },
+                "category": {
+                    "description": "This is used to categorize the component in Page Builder and determines which icon is shown next to the component's name in Page Builder",
+                    "enum": [
+                        "category-carousel",
+                        "featured-product",
+                        "image",
+                        "image-across",
+                        "image-slider",
+                        "image-text",
+                        "non-element",
+                        "product-carousel",
+                        "text-area",
+                        "text-banner",
+                        "text-editor",
+                        "text-utility",
+                        "video"
+                    ],
+                    "type": "string"
+                },
+                "code": {
+                    "description": "The flex component code",
+                    "type": "string"
+                },
+                "conflicts": {
+                    "additionalProperties": true,
+                    "description": "Object where the key is a Component's Code and value is the Version number with an optional leading >, >=, <, <=, ex: \"mmx-base\": \">=10.07.00\"",
+                    "properties": {},
+                    "type": "object"
+                },
+                "defaults": {
+                    "additionalProperties": true,
+                    "description": "Object containing the default values for all properties",
+                    "properties": {},
+                    "type": "object"
+                },
+                "depends": {
+                    "additionalProperties": true,
+                    "description": "Object where the key is a Component's Code and value is the Version number with an optional leading >, >=, <, <=, ex:\"mmx-base\": \">=10.07.00\"",
+                    "properties": {},
+                    "type": "object"
+                },
+                "images": {
+                    "description": "Array of {@link FlexComponentImages} that allows you to include images in your component that will get added to the server/store upon import.",
+                    "items": {
+                        "$ref": "#/definitions/FlexComponentImages"
+                    },
+                    "type": "array"
+                },
+                "initialization_template": {
+                    "description": "Path to the initialization template. This is a .mvt text file that can contain Miva template logic.",
+                    "type": "string"
+                },
+                "instance_template": {
+                    "description": "Path to the instance template. This is a .mvt text file that can contain Miva template logic.",
+                    "type": "string"
+                },
+                "managed": {
+                    "description": "Boolean to indicate if the JS/CSS Resources should be module managed resources or not.\n   managed: true - Users *cannot* modify or delete the CSS/JS Resources of the Flex Component.\n   managed: false - Users *can* modify or delete the CSS/JS Resources of the Flex Component\n   default is true",
+                    "type": "boolean"
+                },
+                "name": {
+                    "description": "The flex component name",
+                    "type": "string"
+                },
+                "preview": {
+                    "description": "The flex component's preview image. Should be the XML source of an SVG file",
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "Array of JSON objects for the properties the component will provide in admin for the end user",
+                    "items": {
+                        "anyOf": [
                             {
                                 "$ref": "#/definitions/Group"
+                            },
+                            {
+                                "$ref": "#/definitions/TextProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/NumberProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/DateProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/TextAreaProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/SelectProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/RadioProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ColorProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/CheckboxProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/SelectorProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ImageProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/CategoryProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ProductProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/LinkProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/SliderProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/DistributedSliderProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ListProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/GroupListProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/TextEditorProperty"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                },
+                "resourcegroup_code": {
+                    "description": "This is the Miva resource group the CSS/JS will get output from.",
+                    "type": "string"
+                },
+                "scripts": {
+                    "description": "Array of {@link FlexComponentResource} objects for the JavaScript Resources that the component should create",
+                    "items": {
+                        "$ref": "#/definitions/FlexComponentResource"
+                    },
+                    "type": "array"
+                },
+                "styles": {
+                    "description": "Array of {@link FlexComponentResource} objects for the CSS Resources that the component should create",
+                    "items": {
+                        "$ref": "#/definitions/FlexComponentResource"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "Indicate the scope & capabilities of the flex component.\n   type: 'component' = The flex component will be exposed in Page Builder UI's component selector. Supports all capabilities: properties, advanced_properties, images,  scripts, styles, initialization_template, and instance_template.\n   type: 'library' = The flex component will not be exposed in the Page Builder UI's component selector. Mainly supports scripts & styles capabilities.\n   default is 'component'",
+                    "enum": [
+                        "component"
+                    ],
+                    "type": "string"
+                },
+                "version": {
+                    "description": "The flex version number (ex. 1.0.0)",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "FlexComponentTypeLibrary": {
+            "properties": {
+                "code": {
+                    "description": "The flex component code",
+                    "type": "string"
+                },
+                "conflicts": {
+                    "additionalProperties": true,
+                    "description": "Object where the key is a Component's Code and value is the Version number with an optional leading >, >=, <, <=, ex: \"mmx-base\": \">=10.07.00\"",
+                    "properties": {},
+                    "type": "object"
+                },
+                "depends": {
+                    "additionalProperties": true,
+                    "description": "Object where the key is a Component's Code and value is the Version number with an optional leading >, >=, <, <=, ex:\"mmx-base\": \">=10.07.00\"",
+                    "properties": {},
+                    "type": "object"
+                },
+                "images": {
+                    "description": "Array of {@link FlexComponentImages} that allows you to include images in your component that will get added to the server/store upon import.",
+                    "items": {
+                        "$ref": "#/definitions/FlexComponentImages"
+                    },
+                    "type": "array"
+                },
+                "managed": {
+                    "description": "Boolean to indicate if the JS/CSS Resources should be module managed resources or not.\n   managed: true - Users *cannot* modify or delete the CSS/JS Resources of the Flex Component.\n   managed: false - Users *can* modify or delete the CSS/JS Resources of the Flex Component\n   default is true",
+                    "type": "boolean"
+                },
+                "name": {
+                    "description": "The flex component name",
+                    "type": "string"
+                },
+                "resourcegroup_code": {
+                    "description": "This is the Miva resource group the CSS/JS will get output from.",
+                    "type": "string"
+                },
+                "scripts": {
+                    "description": "Array of {@link FlexComponentResource} objects for the JavaScript Resources that the component should create",
+                    "items": {
+                        "$ref": "#/definitions/FlexComponentResource"
+                    },
+                    "type": "array"
+                },
+                "styles": {
+                    "description": "Array of {@link FlexComponentResource} objects for the CSS Resources that the component should create",
+                    "items": {
+                        "$ref": "#/definitions/FlexComponentResource"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "Indicate the scope & capabilities of the flex component.\n   type: 'component' = The flex component will be exposed in Page Builder UI's component selector. Supports all capabilities: properties, advanced_properties, images,  scripts, styles, initialization_template, and instance_template.\n   type: 'library' = The flex component will not be exposed in the Page Builder UI's component selector. Mainly supports scripts & styles capabilities.\n   default is 'component'",
+                    "enum": [
+                        "library"
+                    ],
+                    "type": "string"
+                },
+                "version": {
+                    "description": "The flex version number (ex. 1.0.0)",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Group": {
+            "description": "A group is just a container for other properties and a way to organize the properties on the screen logically and into nested groups.\n\nA group is collapsible and can have an optionally enable/disable the ability to toggle it on/off",
+            "properties": {
+                "can_disable": {
+                    "description": "A boolean-like value",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
+                },
+                "code": {
+                    "type": "string"
+                },
+                "collapsed": {
+                    "description": "A boolean-like value",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
+                },
+                "prompt": {
+                    "type": "string"
+                },
+                "properties": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/Group"
+                            },
+                            {
+                                "$ref": "#/definitions/TextProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/NumberProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/DateProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/TextAreaProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/SelectProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/RadioProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ColorProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/CheckboxProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/SelectorProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ImageProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/CategoryProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ProductProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/LinkProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/SliderProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/DistributedSliderProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ListProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/GroupListProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/TextEditorProperty"
                             }
                         ]
                     },
                     "type": "array"
                 },
                 "type": {
-                    "const": "group",
+                    "enum": [
+                        "group"
+                    ],
                     "type": "string"
                 }
             },
@@ -318,7 +673,9 @@
                     "type": "string"
                 },
                 "list_type": {
-                    "const": "group",
+                    "enum": [
+                        "group"
+                    ],
                     "type": "string"
                 },
                 "max_count": {
@@ -337,6 +694,9 @@
                     "items": {
                         "anyOf": [
                             {
+                                "$ref": "#/definitions/Group"
+                            },
+                            {
                                 "$ref": "#/definitions/TextProperty"
                             },
                             {
@@ -389,18 +749,20 @@
                             },
                             {
                                 "$ref": "#/definitions/TextEditorProperty"
-                            },
-                            {
-                                "$ref": "#/definitions/Group"
                             }
                         ]
                     },
                     "type": "array"
                 },
                 "required": {
-                    "$ref": "#/definitions/Booleanish",
                     "default": false,
-                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "template": {
                     "additionalProperties": true,
@@ -409,8 +771,10 @@
                     "type": "object"
                 },
                 "type": {
-                    "const": "list",
                     "description": "Controls the UI for the input device people use within Page Builder",
+                    "enum": [
+                        "list"
+                    ],
                     "type": "string"
                 }
             },
@@ -423,7 +787,11 @@
                     "type": "string"
                 },
                 "value": {
-                    "$ref": "#/definitions/Value"
+                    "description": "A general value of a property",
+                    "type": [
+                        "string",
+                        "number"
+                    ]
                 }
             },
             "type": "object"
@@ -443,9 +811,14 @@
                     "type": "string"
                 },
                 "required": {
-                    "$ref": "#/definitions/Booleanish",
                     "default": false,
-                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "responsive_images": {
                     "items": {
@@ -454,8 +827,10 @@
                     "type": "array"
                 },
                 "type": {
-                    "const": "image",
                     "description": "Controls the UI for the input device people use within Page Builder",
+                    "enum": [
+                        "image"
+                    ],
                     "type": "string"
                 },
                 "width": {
@@ -484,13 +859,20 @@
                     "type": "string"
                 },
                 "required": {
-                    "$ref": "#/definitions/Booleanish",
                     "default": false,
-                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "type": {
-                    "const": "link",
                     "description": "Controls the UI for the input device people use within Page Builder",
+                    "enum": [
+                        "link"
+                    ],
                     "type": "string"
                 }
             },
@@ -529,9 +911,14 @@
                     "type": "string"
                 },
                 "required": {
-                    "$ref": "#/definitions/Booleanish",
                     "default": false,
-                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "template": {
                     "additionalProperties": true,
@@ -540,8 +927,10 @@
                     "type": "object"
                 },
                 "type": {
-                    "const": "list",
                     "description": "Controls the UI for the input device people use within Page Builder",
+                    "enum": [
+                        "list"
+                    ],
                     "type": "string"
                 }
             },
@@ -726,7 +1115,11 @@
                     "type": "string"
                 },
                 "label": {
-                    "$ref": "#/definitions/Value"
+                    "description": "A general value of a property",
+                    "type": [
+                        "string",
+                        "number"
+                    ]
                 },
                 "max": {
                     "type": "number"
@@ -735,30 +1128,43 @@
                     "type": "number"
                 },
                 "placeholder": {
-                    "$ref": "#/definitions/Value"
+                    "description": "A general value of a property",
+                    "type": [
+                        "string",
+                        "number"
+                    ]
                 },
                 "prompt": {
                     "description": "This is the text the end user will see in the Miva admin for this property",
                     "type": "string"
                 },
                 "required": {
-                    "$ref": "#/definitions/Booleanish",
                     "default": false,
-                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "step": {
                     "type": "number"
                 },
                 "text_type": {
-                    "const": "number",
+                    "enum": [
+                        "number"
+                    ],
                     "type": "string"
                 },
                 "textsettings": {
                     "$ref": "#/definitions/TextSettings"
                 },
                 "type": {
-                    "const": "text",
                     "description": "Controls the UI for the input device people use within Page Builder",
+                    "enum": [
+                        "text"
+                    ],
                     "type": "string"
                 },
                 "validation_message": {
@@ -774,10 +1180,18 @@
             "description": "Option of a {@link SelectProperty}, {@link RadioProperty}, or {@link SelectorProperty}\n\nSimilar to <option>",
             "properties": {
                 "text": {
-                    "$ref": "#/definitions/Value"
+                    "description": "A general value of a property",
+                    "type": [
+                        "string",
+                        "number"
+                    ]
                 },
                 "value": {
-                    "$ref": "#/definitions/Value"
+                    "description": "A general value of a property",
+                    "type": [
+                        "string",
+                        "number"
+                    ]
                 }
             },
             "type": "object"
@@ -794,13 +1208,20 @@
                     "type": "string"
                 },
                 "required": {
-                    "$ref": "#/definitions/Booleanish",
                     "default": false,
-                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "type": {
-                    "const": "product",
                     "description": "Controls the UI for the input device people use within Page Builder",
+                    "enum": [
+                        "product"
+                    ],
                     "type": "string"
                 }
             },
@@ -824,13 +1245,20 @@
                     "type": "string"
                 },
                 "required": {
-                    "$ref": "#/definitions/Booleanish",
                     "default": false,
-                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "type": {
-                    "const": "radio",
                     "description": "Controls the UI for the input device people use within Page Builder",
+                    "enum": [
+                        "radio"
+                    ],
                     "type": "string"
                 }
             },
@@ -846,7 +1274,11 @@
                     "type": "number"
                 },
                 "prompt": {
-                    "$ref": "#/definitions/Value"
+                    "description": "A general value of a property",
+                    "type": [
+                        "string",
+                        "number"
+                    ]
                 },
                 "width": {
                     "type": "number"
@@ -872,13 +1304,20 @@
                     "type": "string"
                 },
                 "required": {
-                    "$ref": "#/definitions/Booleanish",
                     "default": false,
-                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "type": {
-                    "const": "select",
                     "description": "Controls the UI for the input device people use within Page Builder",
+                    "enum": [
+                        "select"
+                    ],
                     "type": "string"
                 }
             },
@@ -891,11 +1330,17 @@
                     "$ref": "#/definitions/MivaIcons"
                 },
                 "type": {
-                    "const": "icon",
+                    "enum": [
+                        "icon"
+                    ],
                     "type": "string"
                 },
                 "value": {
-                    "$ref": "#/definitions/Value"
+                    "description": "A general value of a property",
+                    "type": [
+                        "string",
+                        "number"
+                    ]
                 }
             },
             "type": "object"
@@ -911,10 +1356,10 @@
                     "items": {
                         "anyOf": [
                             {
-                                "$ref": "#/definitions/SelectorOption"
+                                "$ref": "#/definitions/Option"
                             },
                             {
-                                "$ref": "#/definitions/Option"
+                                "$ref": "#/definitions/SelectorOption"
                             }
                         ]
                     },
@@ -925,13 +1370,20 @@
                     "type": "string"
                 },
                 "required": {
-                    "$ref": "#/definitions/Booleanish",
                     "default": false,
-                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "type": {
-                    "const": "selector",
                     "description": "Controls the UI for the input device people use within Page Builder",
+                    "enum": [
+                        "selector"
+                    ],
                     "type": "string"
                 }
             },
@@ -945,7 +1397,11 @@
                     "type": "string"
                 },
                 "label": {
-                    "$ref": "#/definitions/Value"
+                    "description": "A general value of a property",
+                    "type": [
+                        "string",
+                        "number"
+                    ]
                 },
                 "precision": {
                     "description": "use -1 to use default precision",
@@ -962,17 +1418,24 @@
                     "type": "number"
                 },
                 "required": {
-                    "$ref": "#/definitions/Booleanish",
                     "default": false,
-                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "scale": {
                     "description": "use -1 to use default scale",
                     "type": "number"
                 },
                 "type": {
-                    "const": "slider",
                     "description": "Controls the UI for the input device people use within Page Builder",
+                    "enum": [
+                        "slider"
+                    ],
                     "type": "string"
                 }
             },
@@ -986,23 +1449,34 @@
                     "type": "string"
                 },
                 "placeholder": {
-                    "$ref": "#/definitions/Value"
+                    "description": "A general value of a property",
+                    "type": [
+                        "string",
+                        "number"
+                    ]
                 },
                 "prompt": {
                     "description": "This is the text the end user will see in the Miva admin for this property",
                     "type": "string"
                 },
                 "required": {
-                    "$ref": "#/definitions/Booleanish",
                     "default": false,
-                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "textsettings": {
                     "$ref": "#/definitions/TextSettings"
                 },
                 "type": {
-                    "const": "textarea",
                     "description": "Controls the UI for the input device people use within Page Builder",
+                    "enum": [
+                        "textarea"
+                    ],
                     "type": "string"
                 }
             },
@@ -1020,13 +1494,20 @@
                     "type": "string"
                 },
                 "required": {
-                    "$ref": "#/definitions/Booleanish",
                     "default": false,
-                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "type": {
-                    "const": "texteditor",
                     "description": "Controls the UI for the input device people use within Page Builder",
+                    "enum": [
+                        "texteditor"
+                    ],
                     "type": "string"
                 }
             },
@@ -1040,7 +1521,11 @@
                     "type": "string"
                 },
                 "label": {
-                    "$ref": "#/definitions/Value"
+                    "description": "A general value of a property",
+                    "type": [
+                        "string",
+                        "number"
+                    ]
                 },
                 "maxlength": {
                     "type": "number"
@@ -1049,16 +1534,25 @@
                     "type": "number"
                 },
                 "placeholder": {
-                    "$ref": "#/definitions/Value"
+                    "description": "A general value of a property",
+                    "type": [
+                        "string",
+                        "number"
+                    ]
                 },
                 "prompt": {
                     "description": "This is the text the end user will see in the Miva admin for this property",
                     "type": "string"
                 },
                 "required": {
-                    "$ref": "#/definitions/Booleanish",
                     "default": false,
-                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI",
+                    "enum": [
+                        0,
+                        1,
+                        false,
+                        true
+                    ]
                 },
                 "text_type": {
                     "enum": [
@@ -1074,8 +1568,10 @@
                     "$ref": "#/definitions/TextSettings"
                 },
                 "type": {
-                    "const": "text",
                     "description": "Controls the UI for the input device people use within Page Builder",
+                    "enum": [
+                        "text"
+                    ],
                     "type": "string"
                 },
                 "validation_message": {
@@ -1087,433 +1583,200 @@
             },
             "type": "object"
         },
-        "TextSetting": {
-            "anyOf": [
-                {
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/TextProperty"
-                        },
-                        {
-                            "$ref": "#/definitions/AdditionalTextSettings"
-                        }
-                    ]
-                },
-                {
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/NumberProperty"
-                        },
-                        {
-                            "$ref": "#/definitions/AdditionalTextSettings"
-                        }
-                    ]
-                },
-                {
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/DateProperty"
-                        },
-                        {
-                            "$ref": "#/definitions/AdditionalTextSettings"
-                        }
-                    ]
-                },
-                {
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/TextAreaProperty"
-                        },
-                        {
-                            "$ref": "#/definitions/AdditionalTextSettings"
-                        }
-                    ]
-                },
-                {
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/SelectProperty"
-                        },
-                        {
-                            "$ref": "#/definitions/AdditionalTextSettings"
-                        }
-                    ]
-                },
-                {
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/RadioProperty"
-                        },
-                        {
-                            "$ref": "#/definitions/AdditionalTextSettings"
-                        }
-                    ]
-                },
-                {
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/ColorProperty"
-                        },
-                        {
-                            "$ref": "#/definitions/AdditionalTextSettings"
-                        }
-                    ]
-                },
-                {
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/CheckboxProperty"
-                        },
-                        {
-                            "$ref": "#/definitions/AdditionalTextSettings"
-                        }
-                    ]
-                },
-                {
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/SelectorProperty"
-                        },
-                        {
-                            "$ref": "#/definitions/AdditionalTextSettings"
-                        }
-                    ]
-                },
-                {
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/ImageProperty"
-                        },
-                        {
-                            "$ref": "#/definitions/AdditionalTextSettings"
-                        }
-                    ]
-                },
-                {
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/CategoryProperty"
-                        },
-                        {
-                            "$ref": "#/definitions/AdditionalTextSettings"
-                        }
-                    ]
-                },
-                {
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/ProductProperty"
-                        },
-                        {
-                            "$ref": "#/definitions/AdditionalTextSettings"
-                        }
-                    ]
-                },
-                {
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/LinkProperty"
-                        },
-                        {
-                            "$ref": "#/definitions/AdditionalTextSettings"
-                        }
-                    ]
-                },
-                {
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/SliderProperty"
-                        },
-                        {
-                            "$ref": "#/definitions/AdditionalTextSettings"
-                        }
-                    ]
-                },
-                {
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/DistributedSliderProperty"
-                        },
-                        {
-                            "$ref": "#/definitions/AdditionalTextSettings"
-                        }
-                    ]
-                },
-                {
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/ListProperty"
-                        },
-                        {
-                            "$ref": "#/definitions/AdditionalTextSettings"
-                        }
-                    ]
-                },
-                {
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/GroupListProperty"
-                        },
-                        {
-                            "$ref": "#/definitions/AdditionalTextSettings"
-                        }
-                    ]
-                },
-                {
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/TextEditorProperty"
-                        },
-                        {
-                            "$ref": "#/definitions/AdditionalTextSettings"
-                        }
-                    ]
-                }
-            ],
-            "description": "An object that extends the {@link Property} with some {@link AdditionalTextSettings}\n\nGreat for adding Font Size, Font Color and Text Alignment for regular text for various states (ex. focus, hover, & active or mobile, tablet, desktop) states are defined by {@link AdditionalTextSettings.pseudoclasses}"
-        },
         "TextSettings": {
             "description": "An optional array of {@link TextSetting} items that can be defined on the property.\n\nIf included it will output a Settings icon within the text box to enable advanced editing of the Text.",
             "properties": {
                 "fields": {
                     "items": {
-                        "$ref": "#/definitions/TextSetting"
+                        "anyOf": [
+                            {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/TextProperty"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/AdditionalTextSettings"
+                                    }
+                                ]
+                            },
+                            {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/NumberProperty"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/AdditionalTextSettings"
+                                    }
+                                ]
+                            },
+                            {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/DateProperty"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/AdditionalTextSettings"
+                                    }
+                                ]
+                            },
+                            {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/TextAreaProperty"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/AdditionalTextSettings"
+                                    }
+                                ]
+                            },
+                            {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/SelectProperty"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/AdditionalTextSettings"
+                                    }
+                                ]
+                            },
+                            {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/RadioProperty"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/AdditionalTextSettings"
+                                    }
+                                ]
+                            },
+                            {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/ColorProperty"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/AdditionalTextSettings"
+                                    }
+                                ]
+                            },
+                            {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/CheckboxProperty"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/AdditionalTextSettings"
+                                    }
+                                ]
+                            },
+                            {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/SelectorProperty"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/AdditionalTextSettings"
+                                    }
+                                ]
+                            },
+                            {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/ImageProperty"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/AdditionalTextSettings"
+                                    }
+                                ]
+                            },
+                            {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/CategoryProperty"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/AdditionalTextSettings"
+                                    }
+                                ]
+                            },
+                            {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/ProductProperty"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/AdditionalTextSettings"
+                                    }
+                                ]
+                            },
+                            {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/LinkProperty"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/AdditionalTextSettings"
+                                    }
+                                ]
+                            },
+                            {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/SliderProperty"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/AdditionalTextSettings"
+                                    }
+                                ]
+                            },
+                            {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/DistributedSliderProperty"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/AdditionalTextSettings"
+                                    }
+                                ]
+                            },
+                            {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/ListProperty"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/AdditionalTextSettings"
+                                    }
+                                ]
+                            },
+                            {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/GroupListProperty"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/AdditionalTextSettings"
+                                    }
+                                ]
+                            },
+                            {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/TextEditorProperty"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/AdditionalTextSettings"
+                                    }
+                                ]
+                            }
+                        ],
+                        "description": "An object that extends the {@link Property} with some {@link AdditionalTextSettings}\n\nGreat for adding Font Size, Font Color and Text Alignment for regular text for various states (ex. focus, hover, & active or mobile, tablet, desktop) states are defined by {@link AdditionalTextSettings.pseudoclasses}"
                     },
                     "type": "array"
                 }
             },
             "type": "object"
-        },
-        "Value": {
-            "description": "A general value of a property",
-            "type": [
-                "string",
-                "number"
-            ]
         }
-    },
-    "properties": {
-        "advanced_properties": {
-            "description": "Array of JSON objects for the properties that will appear in the advanced tab",
-            "items": {
-                "anyOf": [
-                    {
-                        "$ref": "#/definitions/TextProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/NumberProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/DateProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/TextAreaProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/SelectProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/RadioProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/ColorProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/CheckboxProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/SelectorProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/ImageProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/CategoryProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/ProductProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/LinkProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/SliderProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/DistributedSliderProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/ListProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/GroupListProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/TextEditorProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/Group"
-                    }
-                ]
-            },
-            "type": "array"
-        },
-        "category": {
-            "description": "This is used to categorize the component in Page Builder and determines which icon is shown next to the component's name in Page Builder",
-            "enum": [
-                "category-carousel",
-                "featured-product",
-                "image",
-                "image-across",
-                "image-slider",
-                "image-text",
-                "non-element",
-                "product-carousel",
-                "text-area",
-                "text-banner",
-                "text-editor",
-                "text-utility",
-                "video"
-            ],
-            "type": "string"
-        },
-        "code": {
-            "description": "The flex component code",
-            "type": "string"
-        },
-        "conflicts": {
-            "additionalProperties": true,
-            "description": "Object where the key is a Component's Code and value is the Version number with an optional leading >, >=, <, <=, ex: \"mmx-base\": \">=10.07.00\"",
-            "properties": {},
-            "type": "object"
-        },
-        "defaults": {
-            "additionalProperties": true,
-            "description": "Object containing the default values for all properties",
-            "properties": {},
-            "type": "object"
-        },
-        "depends": {
-            "additionalProperties": true,
-            "description": "Object where the key is a Component's Code and value is the Version number with an optional leading >, >=, <, <=, ex:\"mmx-base\": \">=10.07.00\"",
-            "properties": {},
-            "type": "object"
-        },
-        "images": {
-            "description": "Array of {@link FlexComponentImages} that allows you to include images in your component that will get added to the server/store upon import.",
-            "items": {
-                "$ref": "#/definitions/FlexComponentImages"
-            },
-            "type": "array"
-        },
-        "initialization_template": {
-            "description": "Path to the initialization template. This is a .mvt text file that can contain Miva template logic.",
-            "type": "string"
-        },
-        "instance_template": {
-            "description": "Path to the instance template. This is a .mvt text file that can contain Miva template logic.",
-            "type": "string"
-        },
-        "managed": {
-            "description": "Boolean to indicate if the JS/CSS Resources should be module managed resources or not.\n   managed: true - users *cannot* modify or delete the CSS/JS Resources of the Flex Component.\n   managed: false - users *can* modify or delete the CSS/JS Resources of the Flex Component\n   Default is `true`",
-            "type": "boolean"
-        },
-        "name": {
-            "description": "The flex component name",
-            "type": "string"
-        },
-        "preview": {
-            "description": "The flex component's preview image. Should be the XML source of an SVG file",
-            "type": "string"
-        },
-        "properties": {
-            "description": "Array of JSON objects for the properties the component will provide in admin for the end user",
-            "items": {
-                "anyOf": [
-                    {
-                        "$ref": "#/definitions/TextProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/NumberProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/DateProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/TextAreaProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/SelectProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/RadioProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/ColorProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/CheckboxProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/SelectorProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/ImageProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/CategoryProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/ProductProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/LinkProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/SliderProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/DistributedSliderProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/ListProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/GroupListProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/TextEditorProperty"
-                    },
-                    {
-                        "$ref": "#/definitions/Group"
-                    }
-                ]
-            },
-            "type": "array"
-        },
-        "resourcegroup_code": {
-            "description": "This is the Miva resource group the CSS/JS will get output from.",
-            "type": "string"
-        },
-        "scripts": {
-            "description": "Array of {@link FlexComponentResource} objects for the JavaScript Resources that the component should create",
-            "items": {
-                "$ref": "#/definitions/FlexComponentResource"
-            },
-            "type": "array"
-        },
-        "styles": {
-            "description": "Array of {@link FlexComponentResource} objects for the CSS Resources that the component should create",
-            "items": {
-                "$ref": "#/definitions/FlexComponentResource"
-            },
-            "type": "array"
-        },
-        "version": {
-            "description": "The flex version number (ex. 1.0.0)",
-            "type": "string"
-        }
-    },
-    "type": "object"
+    }
 }
 
