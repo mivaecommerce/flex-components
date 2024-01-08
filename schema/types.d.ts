@@ -426,6 +426,8 @@ export interface GroupListProperty extends ListProperty {
 	list_type: 'group';
 	/** used to tell the outer list what property to use for the display (ie, you change this field in the inner group, set the title of the list entry to that value) */
 	item_prompt_property?: string;
+	/** a prompt that is displayed when prompting users to add/edit an item to the list. For example with a `group_prompt` of "Image", there will be buttons/titles/prompts displaying things like "+ Add Image", "Image >", "← Image" as people add & edit items in the list. */
+	group_prompt?: string;
 	properties?: Array<Property|Group>;
 }
 
