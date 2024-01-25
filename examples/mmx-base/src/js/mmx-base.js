@@ -19,7 +19,11 @@ MMX.isFalsy = (value) => {
 
 MMX.copy = (value) => {
 	if(typeof value === 'object') {
-		return JSON.parse(JSON.stringify(value));
+		try {
+			return JSON.parse(JSON.stringify(value));
+		} catch(err) {
+			return null;
+		}
 	}
 
 	return value;
@@ -235,6 +239,50 @@ MMX.debounce = (func, timeout = 100) => {
 	};
 };
 
+class MMX_FetchQueue {
+	#id = 0;
+	#max = 3;
+	#todo = new Map();
+	#doing = new Map();
+
+	constructor({max} = {}) {
+		this.#max = MMX.coerceNumber(max, this.#max);
+		this.#doNext();
+	}
+
+	request(...params) {
+		return new Promise((resolve, reject) => {
+			this.#todo.set(this.#id++, {
+				params,
+				resolve,
+				reject
+			});
+
+			this.#doNext();
+		});
+	}
+
+	#doNext() {
+		if (this.#todo.size === 0 || this.#doing.size >= this.#max) {
+			return;
+		}
+
+		const [nextId, next] = this.#todo.entries().next().value;
+		this.#doing.set(nextId, next);
+		this.#todo.delete(nextId);
+
+		fetch(...next.params)
+			.then(next.resolve)
+			.catch(next.reject)
+			.finally(() => {
+				this.#doing.delete(nextId);
+				this.#doNext();
+			});
+	}
+}
+
+MMX.fetchQueue = new MMX_FetchQueue();
+
 MMX.Runtime_JSON_API_Call = ({jsonUrl, storeCode, params = {}} = {}) => {
 	jsonUrl = jsonUrl ?? window?.json_url;
 	storeCode = storeCode ?? window?.Store_Code;
@@ -247,7 +295,7 @@ MMX.Runtime_JSON_API_Call = ({jsonUrl, storeCode, params = {}} = {}) => {
 		});
 	}
 
-	return fetch(jsonUrl, {
+	return MMX.fetchQueue.request(jsonUrl, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -255,7 +303,7 @@ MMX.Runtime_JSON_API_Call = ({jsonUrl, storeCode, params = {}} = {}) => {
 		body: JSON.stringify(MMX.assign({Session_Type: 'runtime', Store_Code: storeCode}, params))
 	}).then(async (response) => {
 		const text = await response.text();
-		try{
+		try {
 			return JSON.parse(text);
 		} catch(err) {
 			return Promise.reject({
@@ -273,11 +321,24 @@ MMX.Runtime_JSON_API_Call = ({jsonUrl, storeCode, params = {}} = {}) => {
 	});
 };
 
+MMX.fetchForm = (form, fetchOptions = {}) => {
+	if (!(form instanceof HTMLFormElement) || MMX.variableType(fetchOptions) !== 'object') {
+		return Promise.reject(new TypeError());
+	}
+
+	return MMX.fetchQueue.request(form.action, {
+		method: 'POST',
+		body: new FormData(form),
+		...fetchOptions
+	});
+};
+
 class MMX_Element extends HTMLElement {
 
-	themeResourcePattern = /family=Inter/i;
+	themeResourcePattern;
 	styleResourceCodes = ['mmx-base'];
 	hideOnEmpty = false;
+	renderUniquely = false;
 
 	static baseProps = {
 		init: {
@@ -370,12 +431,18 @@ class MMX_Element extends HTMLElement {
 	renderTemplate() {
 		this.initData();
 		this.checkDataChange();
-		this.beforeRender?.();
 
 		const element = this.shadowRoot || this;
 		const template =  this.getTemplate();
-		MMX.renderTemplate(element, template);
+		const renderRequired = template !== this?.lastTemplate;
 
+		if (this.renderUniquely && !renderRequired) {
+			return;
+		}
+
+		this.beforeRender?.();
+		MMX.renderTemplate(element, template);
+		this.lastTemplate = template;
 		this.afterRender?.();
 	}
 
@@ -391,6 +458,11 @@ class MMX_Element extends HTMLElement {
 	}
 
 	forceUpdate() {
+		if (!this.lastTemplate) {
+			return;
+		}
+
+		this.lastTemplate = null;
 		this.renderTemplate();
 	}
 
@@ -442,7 +514,11 @@ class MMX_Element extends HTMLElement {
 		}
 
 		if (prop?.isJson && typeof value === 'string') {
-			return JSON.parse(value);
+			try {
+				return JSON.parse(value);
+			} catch(err) {
+				return null;
+			}
 		}
 
 		if (prop.allowAny) {
@@ -522,7 +598,11 @@ class MMX_Element extends HTMLElement {
 			return data;
 		}
 
-		return JSON.parse(data);
+		try {
+			return JSON.parse(data);
+		} catch(err) {
+			return null;
+		}
 	}
 
 	/**
@@ -548,6 +628,46 @@ class MMX_Element extends HTMLElement {
 
 	getLoading(isInViewport) {
 		return (isInViewport || MMX.elementInViewport(this)) ? 'eager' : 'lazy';
+	}
+
+	/**
+	 * Rendering Helpers
+	 */
+	renderTextProperty(property = {}, {className = '', prefix = '', field = 'normal', defaultStyle = 'paragraph-s', defaultTag = 'div'}) {
+		if (!property?.value?.length) {
+			return '';
+		}
+
+		const text = MMX.createElement({
+			type: 'mmx-text',
+			attributes: {
+				class: className,
+				'data-style': property?.textsettings?.fields?.[field]?.[`${prefix}style`]?.value || defaultStyle,
+				'data-tag': property?.textsettings?.fields?.[field]?.[`${prefix}tag`]?.value || defaultTag,
+				style: property?.textsettings?.styles?.[field] || ''
+			},
+			content: property.value,
+		});
+
+		return text.outerHTML;
+	}
+
+	renderButtonProperty(property = {}, {className = '', field = 'normal', prefix = 'button_', defaultStyle = 'primary', defaultSize = 's'}) {
+		if (!property?.value?.length) {
+			return '';
+		}
+
+		const button = MMX.createElement({
+			type: 'mmx-button',
+			attributes: {
+				class: className,
+				'data-style': property?.textsettings?.fields?.[field]?.[`${prefix}style`]?.value || defaultStyle,
+				'data-size': property?.textsettings?.fields?.[field]?.[`${prefix}size`]?.value || defaultSize
+			},
+			content: property.value,
+		});
+
+		return button.outerHTML;
 	}
 
 	/**
@@ -604,7 +724,7 @@ class MMX_Element extends HTMLElement {
 	}
 
 	shouldIncludeSheet(sheet) {
-		return ((sheet.href && (this.themeResourcePattern).test(sheet.href)) || (sheet.hasAttribute('data-resource-code') && this.styleResourceCodes.indexOf(sheet.getAttribute('data-resource-code')) !== -1));
+		return ((MMX.variableType(this.themeResourcePattern) === 'regexp' && sheet.href && (this.themeResourcePattern).test(sheet.href)) || (sheet.hasAttribute('data-resource-code') && this.styleResourceCodes.indexOf(sheet.getAttribute('data-resource-code')) !== -1));
 	}
 
 	renderStylesheetLink(sheet) {
@@ -613,4 +733,5 @@ class MMX_Element extends HTMLElement {
 }
 
 window.MMX = MMX;
-window.MMX_Element;
+window.MMX_FetchQueue = MMX_FetchQueue;
+window.MMX_Element = MMX_Element;

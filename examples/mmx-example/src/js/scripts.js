@@ -12,7 +12,7 @@ class MMX_Example extends MMX_Element {
 		};
 	}
 
-	themeResourcePattern = /family=Inter/i;
+	themeResourcePattern = /themes\/my-custom-theme\/(reset|text).css|themes\/another-theme\/headings.css/i;
 	styleResourceCodes = ['mmx-base', 'mmx-example'];
 
 	constructor () {
