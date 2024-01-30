@@ -372,7 +372,6 @@ export interface ProductProperty extends BaseProperty {
 /** Link input allows users to link to any product, category, or page */
 export interface LinkProperty extends BaseProperty {
 	type: 'link';
-	default_type?: 'product' | 'category' | 'page';
 }
 
 /**

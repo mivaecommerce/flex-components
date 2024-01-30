@@ -777,14 +777,6 @@
                     "description": "This is the unique code that identifies the property",
                     "type": "string"
                 },
-                "default_type": {
-                    "enum": [
-                        "category",
-                        "page",
-                        "product"
-                    ],
-                    "type": "string"
-                },
                 "prompt": {
                     "description": "This is the text the end user will see in the Miva admin for this property",
                     "type": "string"
