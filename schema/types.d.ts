@@ -412,7 +412,7 @@ export interface DistributedSliderProperty extends BaseProperty {
 /** List properties allow you to create list of other properties that can be added or removed by the end user. An example would be a list of images used for a hero slider. */
 export interface ListProperty extends BaseProperty {
 	type: 'list';
-	list_type: 'text' | 'image' | 'product' | 'category' | 'color' | 'date' | 'datetime' | 'group';
+	list_type: 'text' | 'image' | 'product' | 'category' | 'color' | 'date' | 'datetime' | 'group' | 'link'
 	/** minimum amount of items that must exist in the list */
 	min_count?: number;
 	/** maximum amount of items that must exist in the list */
