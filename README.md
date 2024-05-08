@@ -9,6 +9,7 @@ This repo contains a collection of Flex Component: examples, schema tools, and w
 - [mmx-base](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-base)
 - [mmx-button](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-button)
 - [mmx-category-carousel](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-category-carousel)
+- [mmx-combination-facet](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-combination-facet)
 - [mmx-csv](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-csv)
 - [mmx-featured-product](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-featured-product)
 - [mmx-hero-slider](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-hero-slider)
