@@ -2,7 +2,7 @@
 
 This repo contains a collection of Flex Component: examples, schema tools, and workflow guides
 
-## Flex Components
+## Shadows Components
 
 [mivaecommerce/shadows](https://github.com/mivaecommerce/shadows) has the [full collection of MMX Flex Components](https://github.com/mivaecommerce/shadows/tree/main/flex-components):
 
