@@ -300,6 +300,7 @@
                     "description": "This is used to categorize the component in Page Builder and determines which icon is shown next to the component's name in Page Builder",
                     "enum": [
                         "category-carousel",
+                        "combination-facet",
                         "featured-product",
                         "image",
                         "image-across",

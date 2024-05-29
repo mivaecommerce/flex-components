@@ -45,7 +45,7 @@ export interface FlexComponentTypeComponent extends BaseFlexComponent {
 	/** Path to the instance template. This is a .mvt text file that can contain Miva template logic. */
 	instance_template?: string;
 	/** This is used to categorize the component in Page Builder and determines which icon is shown next to the component's name in Page Builder */
-	category?: 'category-carousel' | 'featured-product' | 'image-across' | 'image-slider' | 'image-text' | 'image' | 'non-element' | 'product-carousel' | 'quick-order' | 'text-area' | 'text-banner' | 'text-editor' | 'text-utility' | 'video';
+	category?: 'category-carousel' | 'combination-facet' | 'featured-product' | 'image-across' | 'image-slider' | 'image-text' | 'image' | 'non-element' | 'product-carousel' | 'quick-order' | 'text-area' | 'text-banner' | 'text-editor' | 'text-utility' | 'video';
 	/** Array of JSON objects for the properties the component will provide in admin for the end user */
 	properties?: Array<Property|Group>;
 	/** Array of JSON objects for the properties that will appear in the advanced tab */
