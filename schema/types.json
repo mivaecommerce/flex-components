@@ -126,6 +126,207 @@
             },
             "type": "object"
         },
+        "ColumnType": {
+            "description": "A list of the possible Column Type options.\n\nMainly used in {@link CustomLookupColumn.type} values",
+            "enum": [
+                "checkbox",
+                "code",
+                "currency",
+                "date",
+                "datetime",
+                "imagepreview",
+                "mappedtextvalues",
+                "name",
+                "numeric",
+                "serverdate",
+                "serverdatetime",
+                "text"
+            ],
+            "type": "string"
+        },
+        "CustomLookupColumn": {
+            "properties": {
+                "active": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": true
+                },
+                "code": {
+                    "type": "string"
+                },
+                "header": {
+                    "type": "string"
+                },
+                "ondemandcolumn": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": false
+                },
+                "searchable": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": true
+                },
+                "sort_field": {
+                    "type": "string"
+                },
+                "sortable": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": true
+                },
+                "type": {
+                    "$ref": "#/definitions/ColumnType"
+                }
+            },
+            "type": "object"
+        },
+        "CustomLookupMappedTextValuesColumn": {
+            "properties": {
+                "active": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": true
+                },
+                "actual_values": {
+                    "items": {
+                        "$ref": "#/definitions/Value"
+                    },
+                    "type": "array"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "display_values": {
+                    "items": {
+                        "$ref": "#/definitions/Value"
+                    },
+                    "type": "array"
+                },
+                "header": {
+                    "type": "string"
+                },
+                "ondemandcolumn": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": false
+                },
+                "searchable": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": true
+                },
+                "sort_field": {
+                    "type": "string"
+                },
+                "sortable": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": true
+                },
+                "type": {
+                    "const": "mappedtextvalues",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "CustomLookupNumericColumn": {
+            "properties": {
+                "active": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": true
+                },
+                "code": {
+                    "type": "string"
+                },
+                "float_value": {
+                    "type": "number"
+                },
+                "header": {
+                    "type": "string"
+                },
+                "ondemandcolumn": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": false
+                },
+                "searchable": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": true
+                },
+                "sort_field": {
+                    "type": "string"
+                },
+                "sortable": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": true
+                },
+                "type": {
+                    "const": "numeric",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "CustomLookupProperty": {
+            "description": "Custom Lookup",
+            "properties": {
+                "code": {
+                    "description": "This is the unique code that identifies the property",
+                    "type": "string"
+                },
+                "lookup": {
+                    "$ref": "#/definitions/CustomLookupSettings"
+                },
+                "placeholder": {
+                    "$ref": "#/definitions/Value"
+                },
+                "prompt": {
+                    "description": "This is the text the end user will see in the Miva admin for this property",
+                    "type": "string"
+                },
+                "required": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": false,
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                },
+                "type": {
+                    "const": "customlookup",
+                    "description": "Controls the UI for the input device people use within Page Builder",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "CustomLookupSettings": {
+            "properties": {
+                "columns": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/CustomLookupColumn"
+                            },
+                            {
+                                "$ref": "#/definitions/CustomLookupNumericColumn"
+                            },
+                            {
+                                "$ref": "#/definitions/CustomLookupMappedTextValuesColumn"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                },
+                "default_sort": {
+                    "type": "string"
+                },
+                "module_code": {
+                    "type": "string"
+                },
+                "module_function": {
+                    "type": "string"
+                },
+                "selection_column": {
+                    "type": "string"
+                },
+                "title": {
+                    "description": "Optional. If not present, prompt will be used for the dialog title",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
         "DateProperty": {
             "properties": {
                 "code": {
@@ -290,6 +491,9 @@
                                 "$ref": "#/definitions/TextEditorProperty"
                             },
                             {
+                                "$ref": "#/definitions/CustomLookupProperty"
+                            },
+                            {
                                 "$ref": "#/definitions/Group"
                             }
                         ]
@@ -422,6 +626,9 @@
                             },
                             {
                                 "$ref": "#/definitions/TextEditorProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/CustomLookupProperty"
                             },
                             {
                                 "$ref": "#/definitions/Group"
@@ -596,6 +803,9 @@
                                 "$ref": "#/definitions/TextEditorProperty"
                             },
                             {
+                                "$ref": "#/definitions/CustomLookupProperty"
+                            },
+                            {
                                 "$ref": "#/definitions/Group"
                             }
                         ]
@@ -695,6 +905,9 @@
                             },
                             {
                                 "$ref": "#/definitions/TextEditorProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/CustomLookupProperty"
                             },
                             {
                                 "$ref": "#/definitions/Group"
@@ -1562,6 +1775,16 @@
                     "allOf": [
                         {
                             "$ref": "#/definitions/TextEditorProperty"
+                        },
+                        {
+                            "$ref": "#/definitions/AdditionalTextSettings"
+                        }
+                    ]
+                },
+                {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/CustomLookupProperty"
                         },
                         {
                             "$ref": "#/definitions/AdditionalTextSettings"

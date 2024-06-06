@@ -149,7 +149,8 @@ export type Property =
 	| DistributedSliderProperty
 	| ListProperty
 	| GroupListProperty
-	| TextEditorProperty;
+	| TextEditorProperty
+	| CustomLookupProperty;
 
 /** The main fields that apply to all {@link Property} items  */
 export interface BaseProperty {
@@ -438,3 +439,58 @@ export interface GroupListProperty extends ListProperty {
 export interface TextEditorProperty extends BaseProperty {
 	type: 'texteditor';
 }
+
+/**
+ * Custom Lookup
+ */
+export interface CustomLookupProperty extends BaseProperty {
+	type: 'customlookup';
+	placeholder?: Value;
+	lookup: CustomLookupSettings;
+}
+
+export interface CustomLookupSettings {
+	/** @example "combofacet" */
+	module_code: string;
+	/** @example "PageBuilder_CombinationFacetList_Load_Query" */
+	module_function: string;
+	/** Optional. If not present, prompt will be used for the dialog title */
+	title?: string;
+	/** @example "code" */
+	selection_column: string;
+	default_sort?: string;
+	columns: Array<CustomLookupColumn|CustomLookupNumericColumn|CustomLookupMappedTextValuesColumn>
+}
+
+export interface CustomLookupColumn {
+	code: string;
+	header: string;
+	type: ColumnType;
+	/** @default true */
+	sortable?: Booleanish;
+	/** @default true */
+	searchable?: Booleanish;
+	sort_field?: string;
+	/** @default true */
+	active?: Booleanish;
+	/** @default false */
+	ondemandcolumn?: Booleanish;
+}
+
+export interface CustomLookupNumericColumn extends CustomLookupColumn {
+	type: 'numeric';
+	float_value: number;
+}
+
+export interface CustomLookupMappedTextValuesColumn extends CustomLookupColumn {
+	type: 'mappedtextvalues';
+	actual_values: Array<Value>;
+	display_values: Array<Value>;
+}
+
+/**
+ * A list of the possible Column Type options.
+ *
+ * Mainly used in {@link CustomLookupColumn.type} values
+ */
+export type ColumnType = 'code' | 'name' | 'text' | 'numeric' | 'currency' | 'datetime' | 'date' | 'serverdatetime' | 'serverdate' | 'checkbox' | 'imagepreview' | 'mappedtextvalues';
