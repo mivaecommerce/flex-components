@@ -999,6 +999,9 @@
                     "default": false,
                     "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
                 },
+                "supports_new_tab": {
+                    "$ref": "#/definitions/Booleanish"
+                },
                 "type": {
                     "const": "link",
                     "description": "Controls the UI for the input device people use within Page Builder",
