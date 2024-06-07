@@ -269,6 +269,7 @@ export interface TextAreaProperty extends BaseProperty {
 	type: 'textarea';
 	textsettings?: TextSettings;
 	placeholder?: Value;
+	markdown?: Booleanish;
 }
 
 /**

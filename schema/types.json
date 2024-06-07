@@ -1500,6 +1500,9 @@
                     "description": "This is the unique code that identifies the property",
                     "type": "string"
                 },
+                "markdown": {
+                    "$ref": "#/definitions/Booleanish"
+                },
                 "placeholder": {
                     "$ref": "#/definitions/Value"
                 },
