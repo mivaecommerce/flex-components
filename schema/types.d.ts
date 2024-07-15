@@ -54,6 +54,18 @@ export interface FlexComponentTypeComponent extends BaseFlexComponent {
 	defaults?: object;
 	/** The flex component's preview image. Should be the XML source of an SVG file */
 	preview: string;
+	/**
+		CSS Selector that uniquely selects the component on the page.
+
+		Supports the following tokens:
+
+		- %sequence_item_code%: Replaced with sequence_element.item_code
+		- %sequence_code%: Replaced with sequence_element.code
+		- %element_item_code%: Replaced with element.item_code
+		- %element_code%: Replaced with element.code
+		- %component_code%: Replaced with component.code
+	*/
+	preview_component_selector: string;
 }
 
 export type FlexComponent = FlexComponentTypeLibrary | FlexComponentTypeComponent;
@@ -166,6 +178,16 @@ export interface BaseProperty {
 	 * @default false
 	 */
 	required?: Booleanish;
+	/**
+		CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.
+
+		Supports the following tokens/features:
+
+		- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.
+		- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.
+		- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, "mmx-hero:shadow" is not valid, it MUST be "mmx-hero :shadow"
+	*/
+	preview_property_selector: string;
 }
 
 // Text Settings
