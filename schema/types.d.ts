@@ -162,7 +162,8 @@ export type Property =
 	| ListProperty
 	| GroupListProperty
 	| TextEditorProperty
-	| CustomLookupProperty;
+	| CustomLookupProperty
+	| ImageTypeProperty;
 
 /** The main fields that apply to all {@link Property} items  */
 export interface BaseProperty {
@@ -518,3 +519,10 @@ export interface CustomLookupMappedTextValuesColumn extends CustomLookupColumn {
  * Mainly used in {@link CustomLookupColumn.type} values
  */
 export type ColumnType = 'code' | 'name' | 'text' | 'numeric' | 'currency' | 'datetime' | 'date' | 'serverdatetime' | 'serverdate' | 'checkbox' | 'imagepreview' | 'mappedtextvalues';
+
+/**
+ * Image Type Lookup
+ */
+export interface ImageTypeProperty extends BaseProperty {
+	type: 'imagetype';
+}
