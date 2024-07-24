@@ -163,7 +163,8 @@ export type Property =
 	| GroupListProperty
 	| TextEditorProperty
 	| CustomLookupProperty
-	| ImageTypeProperty;
+	| ImageTypeProperty
+	| ProductCustomFieldLookupProperty;
 
 /** The main fields that apply to all {@link Property} items  */
 export interface BaseProperty {
@@ -525,4 +526,11 @@ export type ColumnType = 'code' | 'name' | 'text' | 'numeric' | 'currency' | 'da
  */
 export interface ImageTypeProperty extends BaseProperty {
 	type: 'imagetype';
+}
+
+/**
+ * Product Custom Field Lookup Property
+ */
+export interface ProductCustomFieldLookupProperty extends BaseProperty {
+	type: 'productcustomfieldlookup';
 }
