@@ -164,7 +164,8 @@ export type Property =
 	| TextEditorProperty
 	| CustomLookupProperty
 	| ImageTypeProperty
-	| ProductCustomFieldLookupProperty;
+	| ProductCustomFieldLookupProperty
+	| FragmentProperty;
 
 /** The main fields that apply to all {@link Property} items  */
 export interface BaseProperty {
@@ -533,4 +534,11 @@ export interface ImageTypeProperty extends BaseProperty {
  */
 export interface ProductCustomFieldLookupProperty extends BaseProperty {
 	type: 'productcustomfieldlookup';
+}
+
+/**
+ * Fragment Lookup Property
+ */
+export interface FragmentProperty extends BaseProperty {
+	type: 'fragment';
 }
