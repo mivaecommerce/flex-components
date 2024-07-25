@@ -65,7 +65,7 @@ export interface FlexComponentTypeComponent extends BaseFlexComponent {
 		- %element_code%: Replaced with element.code
 		- %component_code%: Replaced with component.code
 	*/
-	preview_component_selector: string;
+	preview_component_selector?: string;
 }
 
 export type FlexComponent = FlexComponentTypeLibrary | FlexComponentTypeComponent;
@@ -190,7 +190,7 @@ export interface BaseProperty {
 		- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.
 		- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, "mmx-hero:shadow" is not valid, it MUST be "mmx-hero :shadow"
 	*/
-	preview_property_selector: string;
+	preview_property_selector?: string;
 }
 
 // Text Settings
