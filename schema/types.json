@@ -603,7 +603,7 @@
                     "type": "string"
                 },
                 "preview_component_selector": {
-                    "description": "CSS Selector that uniquely selects the component on the page.\n\nSupports the following tokens:\n\n- %sequence_item_code%: Replaced with sequence_element.item_code\n- %sequence_code%: Replaced with sequence_element.code\n- %element_item_code%: Replaced with element.item_code\n- %element_code%: Replaced with element.code\n- %component_code%: Replaced with component.code",
+                    "description": "CSS Selector that uniquely selects the component on the page.\n\nSupports the following tokens:\n\n- **%sequence_item_code%**\n\t- Replaced with sequence_element.item_code\n- **%sequence_code%**\n\t- Replaced with sequence_element.code\n- **%element_item_code%**\n\t- Replaced with element.item_code\n- **%element_code%**\n\t- Replaced with element.code\n- **%component_code%**\n\t- Replaced with component.code",
                     "type": "string"
                 },
                 "properties": {
