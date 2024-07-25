@@ -74,10 +74,10 @@ export interface FlexComponentTypeComponent extends BaseFlexComponent {
 	*/
 	preview_component_selector?: string;
 	/**
-	 * An array of {@link SampleDataInclusionCondition} objects
+	 * An array of {@link SampleDataTypesCondition} objects
 	 * @example [{"type": "product", "conditions": {"settings:source:value": [ "related", "product" ]} }]
 	*/
-	sample_data_inclusion?: Array<SampleDataInclusionCondition>;
+	sample_data_types?: Array<SampleDataTypesCondition>;
 }
 
 export type FlexComponent = FlexComponentTypeLibrary | FlexComponentTypeComponent;
@@ -587,10 +587,10 @@ export interface FragmentProperty extends BaseProperty {
 }
 
 /**
- * Sample Data Inclusion Condition of a {@link FlexComponent.sample_data_inclusion}
+ * Sample Data Types Condition of a {@link FlexComponent.sample_data_types}
  */
-export interface SampleDataInclusionCondition {
-	type: SampleDataInclusionConditionType;
+export interface SampleDataTypesCondition {
+	type: SampleDataTypesConditionType;
 	/**
 	 * @example {"property_path": [ <array_of_OR_joined_values> ], "<AND_joined_additional_property_path>": [] }
 	 */
@@ -598,8 +598,8 @@ export interface SampleDataInclusionCondition {
 }
 
 /**
- * A list of the possible Column Type options.
+ * A list of the possible Sample Data Types Condition Type options.
  *
- * Mainly used in {@link CustomLookupColumn.type} values
+ * Mainly used in {@link SampleDataTypesCondition.type} values
  */
-export type SampleDataInclusionConditionType = 'product' | 'category' | 'order' | 'payment' | 'search';
+export type SampleDataTypesConditionType = 'product' | 'category' | 'order' | 'payment' | 'search';

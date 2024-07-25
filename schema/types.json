@@ -723,10 +723,10 @@
                     "description": "This is the Miva resource group the CSS/JS will get output from.",
                     "type": "string"
                 },
-                "sample_data_inclusion": {
-                    "description": "An array of {@link SampleDataInclusionCondition} objects",
+                "sample_data_types": {
+                    "description": "An array of {@link SampleDataTypesCondition} objects",
                     "items": {
-                        "$ref": "#/definitions/SampleDataInclusionCondition"
+                        "$ref": "#/definitions/SampleDataTypesCondition"
                     },
                     "type": "array"
                 },
@@ -1648,8 +1648,8 @@
             },
             "type": "object"
         },
-        "SampleDataInclusionCondition": {
-            "description": "Sample Data Inclusion Condition of a {@link FlexComponent.sample_data_inclusion}",
+        "SampleDataTypesCondition": {
+            "description": "Sample Data Types Condition of a {@link FlexComponent.sample_data_types}",
             "properties": {
                 "conditions": {
                     "additionalProperties": true,
@@ -1657,13 +1657,13 @@
                     "type": "object"
                 },
                 "type": {
-                    "$ref": "#/definitions/SampleDataInclusionConditionType"
+                    "$ref": "#/definitions/SampleDataTypesConditionType"
                 }
             },
             "type": "object"
         },
-        "SampleDataInclusionConditionType": {
-            "description": "A list of the possible Column Type options.\n\nMainly used in {@link CustomLookupColumn.type} values",
+        "SampleDataTypesConditionType": {
+            "description": "A list of the possible Sample Data Types Condition Type options.\n\nMainly used in {@link SampleDataTypesCondition.type} values",
             "enum": [
                 "category",
                 "order",
