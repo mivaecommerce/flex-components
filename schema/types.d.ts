@@ -194,6 +194,35 @@ export interface BaseProperty {
 	 */
 	required?: Booleanish;
 	/**
+	 * An object used to control when a property should or should not be visible
+	 *
+	 * @example
+	 	{
+		    type: 'group',
+		    code: 'related_settings',
+		    prompt: 'Related Settings',
+		    visibility_conditions: {
+		        source: {
+		            value: ['related']
+		        }
+		}
+	 *
+	 * @example
+	 	{
+		    "<sibling_property_code>": {
+		        "<value_member_name>": [ <value1>, <value2>, ... ],
+		        "<other_value_member_name>": [ <value1>, <value2>, ... ],
+		        ...
+		    },
+		    "<another_sibling_property_code>": {
+		        "<value_member_name>": [ <value1>, <value2>, ... ]
+		    },
+		    ...
+		}
+	 *
+	 */
+	visibility_conditions?: object;
+	/**
 		CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.
 
 		Supports the following tokens/features:
