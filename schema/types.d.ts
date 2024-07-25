@@ -66,6 +66,11 @@ export interface FlexComponentTypeComponent extends BaseFlexComponent {
 		- %component_code%: Replaced with component.code
 	*/
 	preview_component_selector?: string;
+	/**
+	 * An array of {@link SampleDataInclusionCondition} objects
+	 * @example [{"type": "product", "conditions": {"settings:source:value": [ "related", "product" ]} }]
+	*/
+	sample_data_inclusion?: Array<SampleDataInclusionCondition>;
 }
 
 export type FlexComponent = FlexComponentTypeLibrary | FlexComponentTypeComponent;
@@ -542,3 +547,21 @@ export interface ProductCustomFieldLookupProperty extends BaseProperty {
 export interface FragmentProperty extends BaseProperty {
 	type: 'fragment';
 }
+
+/**
+ * Sample Data Inclusion Condition of a {@link FlexComponent.sample_data_inclusion}
+ */
+export interface SampleDataInclusionCondition {
+	type: SampleDataInclusionConditionType;
+	/**
+	 * @example {"property_path": [ <array_of_OR_joined_values> ], "<AND_joined_additional_property_path>": [] }
+	 */
+	conditions?: object;
+}
+
+/**
+ * A list of the possible Column Type options.
+ *
+ * Mainly used in {@link CustomLookupColumn.type} values
+ */
+export type SampleDataInclusionConditionType = 'product' | 'category' | 'order' | 'payment' | 'search';

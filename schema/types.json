@@ -687,6 +687,13 @@
                     "description": "This is the Miva resource group the CSS/JS will get output from.",
                     "type": "string"
                 },
+                "sample_data_inclusion": {
+                    "description": "An array of {@link SampleDataInclusionCondition} objects",
+                    "items": {
+                        "$ref": "#/definitions/SampleDataInclusionCondition"
+                    },
+                    "type": "array"
+                },
                 "scripts": {
                     "description": "Array of {@link FlexComponentResource} objects for the JavaScript Resources that the component should create",
                     "items": {
@@ -1544,6 +1551,31 @@
                 }
             },
             "type": "object"
+        },
+        "SampleDataInclusionCondition": {
+            "description": "Sample Data Inclusion Condition of a {@link FlexComponent.sample_data_inclusion}",
+            "properties": {
+                "conditions": {
+                    "additionalProperties": true,
+                    "properties": {},
+                    "type": "object"
+                },
+                "type": {
+                    "$ref": "#/definitions/SampleDataInclusionConditionType"
+                }
+            },
+            "type": "object"
+        },
+        "SampleDataInclusionConditionType": {
+            "description": "A list of the possible Column Type options.\n\nMainly used in {@link CustomLookupColumn.type} values",
+            "enum": [
+                "category",
+                "order",
+                "payment",
+                "product",
+                "search"
+            ],
+            "type": "string"
         },
         "SelectProperty": {
             "description": "Select input\n\nSimilar to <select>",
