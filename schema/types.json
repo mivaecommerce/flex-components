@@ -61,6 +61,10 @@
                     "description": "This is the unique code that identifies the property",
                     "type": "string"
                 },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
+                    "type": "string"
+                },
                 "prompt": {
                     "description": "This is the text the end user will see in the Miva admin for this property",
                     "type": "string"
@@ -74,6 +78,12 @@
                     "const": "category",
                     "description": "Controls the UI for the input device people use within Page Builder",
                     "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
                 }
             },
             "type": "object"
@@ -83,6 +93,10 @@
             "properties": {
                 "code": {
                     "description": "This is the unique code that identifies the property",
+                    "type": "string"
+                },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
                     "type": "string"
                 },
                 "prompt": {
@@ -98,6 +112,12 @@
                     "const": "checkbox",
                     "description": "Controls the UI for the input device people use within Page Builder",
                     "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
                 }
             },
             "type": "object"
@@ -107,6 +127,10 @@
             "properties": {
                 "code": {
                     "description": "This is the unique code that identifies the property",
+                    "type": "string"
+                },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
                     "type": "string"
                 },
                 "prompt": {
@@ -122,6 +146,223 @@
                     "const": "color",
                     "description": "Controls the UI for the input device people use within Page Builder",
                     "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "ColumnType": {
+            "description": "A list of the possible Column Type options.\n\nMainly used in {@link CustomLookupColumn.type} values",
+            "enum": [
+                "checkbox",
+                "code",
+                "currency",
+                "date",
+                "datetime",
+                "imagepreview",
+                "mappedtextvalues",
+                "name",
+                "numeric",
+                "serverdate",
+                "serverdatetime",
+                "text"
+            ],
+            "type": "string"
+        },
+        "CustomLookupColumn": {
+            "properties": {
+                "active": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": true
+                },
+                "code": {
+                    "type": "string"
+                },
+                "header": {
+                    "type": "string"
+                },
+                "ondemandcolumn": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": false
+                },
+                "searchable": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": true
+                },
+                "sort_field": {
+                    "type": "string"
+                },
+                "sortable": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": true
+                },
+                "type": {
+                    "$ref": "#/definitions/ColumnType"
+                }
+            },
+            "type": "object"
+        },
+        "CustomLookupMappedTextValuesColumn": {
+            "properties": {
+                "active": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": true
+                },
+                "actual_values": {
+                    "items": {
+                        "$ref": "#/definitions/Value"
+                    },
+                    "type": "array"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "display_values": {
+                    "items": {
+                        "$ref": "#/definitions/Value"
+                    },
+                    "type": "array"
+                },
+                "header": {
+                    "type": "string"
+                },
+                "ondemandcolumn": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": false
+                },
+                "searchable": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": true
+                },
+                "sort_field": {
+                    "type": "string"
+                },
+                "sortable": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": true
+                },
+                "type": {
+                    "const": "mappedtextvalues",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "CustomLookupNumericColumn": {
+            "properties": {
+                "active": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": true
+                },
+                "code": {
+                    "type": "string"
+                },
+                "float_value": {
+                    "type": "number"
+                },
+                "header": {
+                    "type": "string"
+                },
+                "ondemandcolumn": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": false
+                },
+                "searchable": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": true
+                },
+                "sort_field": {
+                    "type": "string"
+                },
+                "sortable": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": true
+                },
+                "type": {
+                    "const": "numeric",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "CustomLookupProperty": {
+            "description": "Custom Lookup",
+            "properties": {
+                "code": {
+                    "description": "This is the unique code that identifies the property",
+                    "type": "string"
+                },
+                "lookup": {
+                    "$ref": "#/definitions/CustomLookupSettings"
+                },
+                "placeholder": {
+                    "$ref": "#/definitions/Value"
+                },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
+                    "type": "string"
+                },
+                "prompt": {
+                    "description": "This is the text the end user will see in the Miva admin for this property",
+                    "type": "string"
+                },
+                "required": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": false,
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                },
+                "type": {
+                    "const": "customlookup",
+                    "description": "Controls the UI for the input device people use within Page Builder",
+                    "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "CustomLookupSettings": {
+            "properties": {
+                "columns": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/CustomLookupColumn"
+                            },
+                            {
+                                "$ref": "#/definitions/CustomLookupNumericColumn"
+                            },
+                            {
+                                "$ref": "#/definitions/CustomLookupMappedTextValuesColumn"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                },
+                "default_sort": {
+                    "type": "string"
+                },
+                "module_code": {
+                    "type": "string"
+                },
+                "module_function": {
+                    "type": "string"
+                },
+                "selection_column": {
+                    "type": "string"
+                },
+                "title": {
+                    "description": "Optional. If not present, prompt will be used for the dialog title",
+                    "type": "string"
                 }
             },
             "type": "object"
@@ -136,6 +377,10 @@
                     "type": "string"
                 },
                 "min": {
+                    "type": "string"
+                },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
                     "type": "string"
                 },
                 "prompt": {
@@ -163,6 +408,12 @@
                 },
                 "validation_pattern": {
                     "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
                 }
             },
             "type": "object"
@@ -178,6 +429,10 @@
                     "description": "This is the unique code that identifies the property",
                     "type": "string"
                 },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
+                    "type": "string"
+                },
                 "prompt": {
                     "description": "This is the text the end user will see in the Miva admin for this property",
                     "type": "string"
@@ -191,6 +446,12 @@
                     "const": "distributedslider",
                     "description": "Controls the UI for the input device people use within Page Builder",
                     "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
                 }
             },
             "type": "object"
@@ -290,6 +551,18 @@
                                 "$ref": "#/definitions/TextEditorProperty"
                             },
                             {
+                                "$ref": "#/definitions/CustomLookupProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ImageTypeProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ProductCustomFieldLookupProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/FragmentProperty"
+                            },
+                            {
                                 "$ref": "#/definitions/Group"
                             }
                         ]
@@ -366,6 +639,10 @@
                     "description": "The flex component's preview image. Should be the XML source of an SVG file",
                     "type": "string"
                 },
+                "preview_component_selector": {
+                    "description": "CSS Selector that uniquely selects the component on the page.\n\nSupports the following tokens:\n\n- **%sequence_item_code%**\n\t- Replaced with sequence_element.item_code\n- **%sequence_code%**\n\t- Replaced with sequence_element.code\n- **%element_item_code%**\n\t- Replaced with element.item_code\n- **%element_code%**\n\t- Replaced with element.code\n- **%component_code%**\n\t- Replaced with component.code",
+                    "type": "string"
+                },
                 "properties": {
                     "description": "Array of JSON objects for the properties the component will provide in admin for the end user",
                     "items": {
@@ -425,6 +702,18 @@
                                 "$ref": "#/definitions/TextEditorProperty"
                             },
                             {
+                                "$ref": "#/definitions/CustomLookupProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ImageTypeProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ProductCustomFieldLookupProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/FragmentProperty"
+                            },
+                            {
                                 "$ref": "#/definitions/Group"
                             }
                         ]
@@ -434,6 +723,13 @@
                 "resourcegroup_code": {
                     "description": "This is the Miva resource group the CSS/JS will get output from.",
                     "type": "string"
+                },
+                "sample_data_types": {
+                    "description": "An array of {@link SampleDataTypesCondition} objects",
+                    "items": {
+                        "$ref": "#/definitions/SampleDataTypesCondition"
+                    },
+                    "type": "array"
                 },
                 "scripts": {
                     "description": "Array of {@link FlexComponentResource} objects for the JavaScript Resources that the component should create",
@@ -524,6 +820,40 @@
             },
             "type": "object"
         },
+        "FragmentProperty": {
+            "description": "Fragment Lookup Property",
+            "properties": {
+                "code": {
+                    "description": "This is the unique code that identifies the property",
+                    "type": "string"
+                },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
+                    "type": "string"
+                },
+                "prompt": {
+                    "description": "This is the text the end user will see in the Miva admin for this property",
+                    "type": "string"
+                },
+                "required": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": false,
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                },
+                "type": {
+                    "const": "fragment",
+                    "description": "Controls the UI for the input device people use within Page Builder",
+                    "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
         "Group": {
             "description": "A group is just a container for other properties and a way to organize the properties on the screen logically and into nested groups.\n\nA group is collapsible and can have an optionally enable/disable the ability to toggle it on/off",
             "properties": {
@@ -597,6 +927,18 @@
                                 "$ref": "#/definitions/TextEditorProperty"
                             },
                             {
+                                "$ref": "#/definitions/CustomLookupProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ImageTypeProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ProductCustomFieldLookupProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/FragmentProperty"
+                            },
+                            {
                                 "$ref": "#/definitions/Group"
                             }
                         ]
@@ -635,6 +977,10 @@
                 "min_count": {
                     "description": "minimum amount of items that must exist in the list",
                     "type": "number"
+                },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
+                    "type": "string"
                 },
                 "prompt": {
                     "description": "This is the text the end user will see in the Miva admin for this property",
@@ -698,6 +1044,18 @@
                                 "$ref": "#/definitions/TextEditorProperty"
                             },
                             {
+                                "$ref": "#/definitions/CustomLookupProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ImageTypeProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ProductCustomFieldLookupProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/FragmentProperty"
+                            },
+                            {
                                 "$ref": "#/definitions/Group"
                             }
                         ]
@@ -719,6 +1077,12 @@
                     "const": "list",
                     "description": "Controls the UI for the input device people use within Page Builder",
                     "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
                 }
             },
             "type": "object"
@@ -745,6 +1109,10 @@
                 "height": {
                     "type": "number"
                 },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
+                    "type": "string"
+                },
                 "prompt": {
                     "description": "This is the text the end user will see in the Miva admin for this property",
                     "type": "string"
@@ -765,17 +1133,27 @@
                     "description": "Controls the UI for the input device people use within Page Builder",
                     "type": "string"
                 },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
+                },
                 "width": {
                     "type": "number"
                 }
             },
             "type": "object"
         },
-        "LinkProperty": {
-            "description": "Link input allows users to link to any product, category, or page",
+        "ImageTypeProperty": {
+            "description": "Image Type Lookup",
             "properties": {
                 "code": {
                     "description": "This is the unique code that identifies the property",
+                    "type": "string"
+                },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
                     "type": "string"
                 },
                 "prompt": {
@@ -788,9 +1166,52 @@
                     "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
                 },
                 "type": {
+                    "const": "imagetype",
+                    "description": "Controls the UI for the input device people use within Page Builder",
+                    "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "LinkProperty": {
+            "description": "Link input allows users to link to any product, category, or page",
+            "properties": {
+                "code": {
+                    "description": "This is the unique code that identifies the property",
+                    "type": "string"
+                },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
+                    "type": "string"
+                },
+                "prompt": {
+                    "description": "This is the text the end user will see in the Miva admin for this property",
+                    "type": "string"
+                },
+                "required": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": false,
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                },
+                "supports_new_tab": {
+                    "$ref": "#/definitions/Booleanish"
+                },
+                "type": {
                     "const": "link",
                     "description": "Controls the UI for the input device people use within Page Builder",
                     "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
                 }
             },
             "type": "object"
@@ -824,6 +1245,10 @@
                     "description": "minimum amount of items that must exist in the list",
                     "type": "number"
                 },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
+                    "type": "string"
+                },
                 "prompt": {
                     "description": "This is the text the end user will see in the Miva admin for this property",
                     "type": "string"
@@ -843,6 +1268,12 @@
                     "const": "list",
                     "description": "Controls the UI for the input device people use within Page Builder",
                     "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
                 }
             },
             "type": "object"
@@ -1037,6 +1468,10 @@
                 "placeholder": {
                     "$ref": "#/definitions/Value"
                 },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
+                    "type": "string"
+                },
                 "prompt": {
                     "description": "This is the text the end user will see in the Miva admin for this property",
                     "type": "string"
@@ -1066,6 +1501,12 @@
                 },
                 "validation_pattern": {
                     "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
                 }
             },
             "type": "object"
@@ -1082,11 +1523,49 @@
             },
             "type": "object"
         },
+        "ProductCustomFieldLookupProperty": {
+            "description": "Product Custom Field Lookup Property",
+            "properties": {
+                "code": {
+                    "description": "This is the unique code that identifies the property",
+                    "type": "string"
+                },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
+                    "type": "string"
+                },
+                "prompt": {
+                    "description": "This is the text the end user will see in the Miva admin for this property",
+                    "type": "string"
+                },
+                "required": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": false,
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                },
+                "type": {
+                    "const": "productcustomfieldlookup",
+                    "description": "Controls the UI for the input device people use within Page Builder",
+                    "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
         "ProductProperty": {
             "description": "Product look-up input",
             "properties": {
                 "code": {
                     "description": "This is the unique code that identifies the property",
+                    "type": "string"
+                },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
                     "type": "string"
                 },
                 "prompt": {
@@ -1102,6 +1581,12 @@
                     "const": "product",
                     "description": "Controls the UI for the input device people use within Page Builder",
                     "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
                 }
             },
             "type": "object"
@@ -1119,6 +1604,10 @@
                     },
                     "type": "array"
                 },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
+                    "type": "string"
+                },
                 "prompt": {
                     "description": "This is the text the end user will see in the Miva admin for this property",
                     "type": "string"
@@ -1132,6 +1621,12 @@
                     "const": "radio",
                     "description": "Controls the UI for the input device people use within Page Builder",
                     "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
                 }
             },
             "type": "object"
@@ -1154,6 +1649,31 @@
             },
             "type": "object"
         },
+        "SampleDataTypesCondition": {
+            "description": "Sample Data Types Condition of a {@link FlexComponent.sample_data_types}",
+            "properties": {
+                "conditions": {
+                    "additionalProperties": true,
+                    "properties": {},
+                    "type": "object"
+                },
+                "type": {
+                    "$ref": "#/definitions/SampleDataTypesConditionType"
+                }
+            },
+            "type": "object"
+        },
+        "SampleDataTypesConditionType": {
+            "description": "A list of the possible Sample Data Types Condition Type options.\n\nMainly used in {@link SampleDataTypesCondition.type} values",
+            "enum": [
+                "category",
+                "order",
+                "payment",
+                "product",
+                "search"
+            ],
+            "type": "string"
+        },
         "SelectProperty": {
             "description": "Select input\n\nSimilar to <select>",
             "properties": {
@@ -1166,6 +1686,10 @@
                         "$ref": "#/definitions/Option"
                     },
                     "type": "array"
+                },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
+                    "type": "string"
                 },
                 "prompt": {
                     "description": "This is the text the end user will see in the Miva admin for this property",
@@ -1180,6 +1704,12 @@
                     "const": "select",
                     "description": "Controls the UI for the input device people use within Page Builder",
                     "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
                 }
             },
             "type": "object"
@@ -1220,6 +1750,10 @@
                     },
                     "type": "array"
                 },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
+                    "type": "string"
+                },
                 "prompt": {
                     "description": "This is the text the end user will see in the Miva admin for this property",
                     "type": "string"
@@ -1233,6 +1767,12 @@
                     "const": "selector",
                     "description": "Controls the UI for the input device people use within Page Builder",
                     "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
                 }
             },
             "type": "object"
@@ -1250,6 +1790,10 @@
                 "precision": {
                     "description": "use -1 to use default precision",
                     "type": "number"
+                },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
+                    "type": "string"
                 },
                 "prompt": {
                     "description": "This is the text the end user will see in the Miva admin for this property",
@@ -1274,6 +1818,12 @@
                     "const": "slider",
                     "description": "Controls the UI for the input device people use within Page Builder",
                     "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
                 }
             },
             "type": "object"
@@ -1285,8 +1835,15 @@
                     "description": "This is the unique code that identifies the property",
                     "type": "string"
                 },
+                "markdown": {
+                    "$ref": "#/definitions/Booleanish"
+                },
                 "placeholder": {
                     "$ref": "#/definitions/Value"
+                },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
+                    "type": "string"
                 },
                 "prompt": {
                     "description": "This is the text the end user will see in the Miva admin for this property",
@@ -1304,6 +1861,12 @@
                     "const": "textarea",
                     "description": "Controls the UI for the input device people use within Page Builder",
                     "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
                 }
             },
             "type": "object"
@@ -1313,6 +1876,10 @@
             "properties": {
                 "code": {
                     "description": "This is the unique code that identifies the property",
+                    "type": "string"
+                },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
                     "type": "string"
                 },
                 "prompt": {
@@ -1328,6 +1895,12 @@
                     "const": "texteditor",
                     "description": "Controls the UI for the input device people use within Page Builder",
                     "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
                 }
             },
             "type": "object"
@@ -1350,6 +1923,10 @@
                 },
                 "placeholder": {
                     "$ref": "#/definitions/Value"
+                },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
+                    "type": "string"
                 },
                 "prompt": {
                     "description": "This is the text the end user will see in the Miva admin for this property",
@@ -1383,6 +1960,12 @@
                 },
                 "validation_pattern": {
                     "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
                 }
             },
             "type": "object"
@@ -1563,6 +2146,46 @@
                     "allOf": [
                         {
                             "$ref": "#/definitions/TextEditorProperty"
+                        },
+                        {
+                            "$ref": "#/definitions/AdditionalTextSettings"
+                        }
+                    ]
+                },
+                {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/CustomLookupProperty"
+                        },
+                        {
+                            "$ref": "#/definitions/AdditionalTextSettings"
+                        }
+                    ]
+                },
+                {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/ImageTypeProperty"
+                        },
+                        {
+                            "$ref": "#/definitions/AdditionalTextSettings"
+                        }
+                    ]
+                },
+                {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/ProductCustomFieldLookupProperty"
+                        },
+                        {
+                            "$ref": "#/definitions/AdditionalTextSettings"
+                        }
+                    ]
+                },
+                {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/FragmentProperty"
                         },
                         {
                             "$ref": "#/definitions/AdditionalTextSettings"

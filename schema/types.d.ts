@@ -54,6 +54,30 @@ export interface FlexComponentTypeComponent extends BaseFlexComponent {
 	defaults?: object;
 	/** The flex component's preview image. Should be the XML source of an SVG file */
 	preview: string;
+	/**
+		CSS Selector that uniquely selects the component on the page.
+
+		Supports the following tokens:
+
+		- **%sequence_item_code%**
+			- Replaced with sequence_element.item_code
+		- **%sequence_code%**
+			- Replaced with sequence_element.code
+		- **%element_item_code%**
+			- Replaced with element.item_code
+		- **%element_code%**
+			- Replaced with element.code
+		- **%component_code%**
+			- Replaced with component.code
+
+		@example '[data-flex-component="%component_code%"][data-flex-item="%element_code%"]'
+	*/
+	preview_component_selector?: string;
+	/**
+	 * An array of {@link SampleDataTypesCondition} objects
+	 * @example [{"type": "product", "conditions": {"settings:source:value": [ "related", "product" ]} }]
+	*/
+	sample_data_types?: Array<SampleDataTypesCondition>;
 }
 
 export type FlexComponent = FlexComponentTypeLibrary | FlexComponentTypeComponent;
@@ -149,7 +173,11 @@ export type Property =
 	| DistributedSliderProperty
 	| ListProperty
 	| GroupListProperty
-	| TextEditorProperty;
+	| TextEditorProperty
+	| CustomLookupProperty
+	| ImageTypeProperty
+	| ProductCustomFieldLookupProperty
+	| FragmentProperty;
 
 /** The main fields that apply to all {@link Property} items  */
 export interface BaseProperty {
@@ -165,6 +193,47 @@ export interface BaseProperty {
 	 * @default false
 	 */
 	required?: Booleanish;
+	/**
+	 * An object used to control when a property should or should not be visible
+	 *
+	 * @example
+	 	{
+		    type: 'group',
+		    code: 'related_settings',
+		    prompt: 'Related Settings',
+		    visibility_conditions: {
+		        source: {
+		            value: ['related']
+		        }
+		}
+	 *
+	 * @example
+	 	{
+		    "<sibling_property_code>": {
+		        "<value_member_name>": [ <value1>, <value2>, ... ],
+		        "<other_value_member_name>": [ <value1>, <value2>, ... ],
+		        ...
+		    },
+		    "<another_sibling_property_code>": {
+		        "<value_member_name>": [ <value1>, <value2>, ... ]
+		    },
+		    ...
+		}
+	 *
+	 */
+	visibility_conditions?: object;
+	/**
+		CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.
+
+		Supports the following tokens/features:
+
+		- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.
+		- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.
+		- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, "mmx-hero:shadow" is not valid, it MUST be "mmx-hero :shadow"
+
+		@example 'mmx-hero :shadow [part~="content"]'
+	*/
+	preview_property_selector?: string;
 }
 
 // Text Settings
@@ -268,6 +337,7 @@ export interface TextAreaProperty extends BaseProperty {
 	type: 'textarea';
 	textsettings?: TextSettings;
 	placeholder?: Value;
+	markdown?: Booleanish;
 }
 
 /**
@@ -372,6 +442,7 @@ export interface ProductProperty extends BaseProperty {
 /** Link input allows users to link to any product, category, or page */
 export interface LinkProperty extends BaseProperty {
 	type: 'link';
+	supports_new_tab?: Booleanish;
 }
 
 /**
@@ -438,3 +509,97 @@ export interface GroupListProperty extends ListProperty {
 export interface TextEditorProperty extends BaseProperty {
 	type: 'texteditor';
 }
+
+/**
+ * Custom Lookup
+ */
+export interface CustomLookupProperty extends BaseProperty {
+	type: 'customlookup';
+	placeholder?: Value;
+	lookup: CustomLookupSettings;
+}
+
+export interface CustomLookupSettings {
+	/** @example "combofacet" */
+	module_code: string;
+	/** @example "PageBuilder_CombinationFacetList_Load_Query" */
+	module_function: string;
+	/** Optional. If not present, prompt will be used for the dialog title */
+	title?: string;
+	/** @example "code" */
+	selection_column: string;
+	default_sort?: string;
+	columns: Array<CustomLookupColumn|CustomLookupNumericColumn|CustomLookupMappedTextValuesColumn>
+}
+
+export interface CustomLookupColumn {
+	code: string;
+	header: string;
+	type: ColumnType;
+	/** @default true */
+	sortable?: Booleanish;
+	/** @default true */
+	searchable?: Booleanish;
+	sort_field?: string;
+	/** @default true */
+	active?: Booleanish;
+	/** @default false */
+	ondemandcolumn?: Booleanish;
+}
+
+export interface CustomLookupNumericColumn extends CustomLookupColumn {
+	type: 'numeric';
+	float_value: number;
+}
+
+export interface CustomLookupMappedTextValuesColumn extends CustomLookupColumn {
+	type: 'mappedtextvalues';
+	actual_values: Array<Value>;
+	display_values: Array<Value>;
+}
+
+/**
+ * A list of the possible Column Type options.
+ *
+ * Mainly used in {@link CustomLookupColumn.type} values
+ */
+export type ColumnType = 'code' | 'name' | 'text' | 'numeric' | 'currency' | 'datetime' | 'date' | 'serverdatetime' | 'serverdate' | 'checkbox' | 'imagepreview' | 'mappedtextvalues';
+
+/**
+ * Image Type Lookup
+ */
+export interface ImageTypeProperty extends BaseProperty {
+	type: 'imagetype';
+}
+
+/**
+ * Product Custom Field Lookup Property
+ */
+export interface ProductCustomFieldLookupProperty extends BaseProperty {
+	type: 'productcustomfieldlookup';
+}
+
+/**
+ * Fragment Lookup Property
+ */
+export interface FragmentProperty extends BaseProperty {
+	type: 'fragment';
+}
+
+/**
+ * Sample Data Types Condition of a {@link FlexComponent.sample_data_types}
+ */
+export interface SampleDataTypesCondition {
+	type: SampleDataTypesConditionType;
+	/**
+	 * @example {"property_path": [ <array_of_OR_joined_values> ], "<AND_joined_additional_property_path>": [] }
+	 */
+	conditions?: object;
+}
+
+/**
+ * A list of the possible Sample Data Types Condition Type options.
+ *
+ * Mainly used in {@link SampleDataTypesCondition.type} values
+ */
+export type SampleDataTypesConditionType = 'product' | 'category' | 'order' | 'payment' | 'search';
