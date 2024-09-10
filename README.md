@@ -6,10 +6,13 @@ This repo contains a collection of Flex Component: examples, schema tools, and w
 
 [mivaecommerce/shadows](https://github.com/mivaecommerce/shadows) has the [full collection of MMX Flex Components](https://github.com/mivaecommerce/shadows/tree/main/flex-components):
 
+- [mmx-accordion](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-accordion)
 - [mmx-base](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-base)
 - [mmx-button](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-button)
+- [mmx-card](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-card)
 - [mmx-category-carousel](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-category-carousel)
 - [mmx-combination-facet](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-combination-facet)
+- [mmx-contact-form](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-contact-form)
 - [mmx-csv](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-csv)
 - [mmx-featured-product](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-featured-product)
 - [mmx-hero-slider](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-hero-slider)
@@ -17,7 +20,9 @@ This repo contains a collection of Flex Component: examples, schema tools, and w
 - [mmx-icons](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-icons)
 - [mmx-image-across](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-image-across)
 - [mmx-image-and-text](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-image-and-text)
+- [mmx-messages](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-messages)
 - [mmx-product-carousel](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-product-carousel)
+- [mmx-product-list](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-product-list)
 - [mmx-quick-order](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-quick-order)
 - [mmx-text-area](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-text-area)
 - [mmx-text-banner](https://github.com/mivaecommerce/shadows/tree/main/flex-components/mmx-text-banner)
