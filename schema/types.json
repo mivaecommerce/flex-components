@@ -581,6 +581,8 @@
                         "image-text",
                         "non-element",
                         "product-carousel",
+                        "product-display",
+                        "product-list",
                         "quick-order",
                         "text-area",
                         "text-banner",
