@@ -177,7 +177,15 @@ export type Property =
 	| CustomLookupProperty
 	| ImageTypeProperty
 	| ProductCustomFieldLookupProperty
-	| FragmentProperty;
+	| FragmentProperty
+	| BorderThicknessProperty
+	| CornerRadiusProperty
+	| DropShadowProperty
+	| LengthUnitProperty
+	| PaddingProperty
+	| FontProperty
+	| TypographyProperty
+	| ButtonProperty;
 
 /** The main fields that apply to all {@link Property} items  */
 export interface BaseProperty {
@@ -584,6 +592,92 @@ export interface ProductCustomFieldLookupProperty extends BaseProperty {
  */
 export interface FragmentProperty extends BaseProperty {
 	type: 'fragment';
+}
+
+/**
+ * Border Thickness Property
+ */
+export interface BorderThicknessProperty extends BaseProperty {
+	type: 'borderthickness';
+}
+
+/**
+ * Corner Radius Property
+ */
+export interface CornerRadiusProperty extends BaseProperty {
+	type: 'cornerradius';
+}
+
+/**
+ * Drop Shadow Property
+ */
+export interface DropShadowProperty extends BaseProperty {
+	type: 'dropshadow';
+}
+
+/**
+ * Length Unit Property
+ */
+export interface LengthUnitProperty extends BaseProperty {
+	type: 'lengthunit';
+	placeholder?: string;
+}
+
+/**
+ * Padding Property
+ */
+
+export interface PaddingProperty extends BaseProperty {
+	type: 'padding';
+	padding_defaults?: PaddingPropertySizes;
+}
+
+export interface PaddingPropertySizes {
+	small?: PaddingPropertyLocations;
+	medium?: PaddingPropertyLocations;
+	large?: PaddingPropertyLocations;
+}
+
+export interface PaddingPropertyLocations {
+	padding_top?: LengthUnit;
+	padding_right?: LengthUnit;
+	padding_bottom?: LengthUnit;
+	padding_left?: LengthUnit;
+}
+
+export interface LengthUnit {
+	value: number;
+	/**
+	 * @example px, rem, vh, em, %
+	 */
+	unit: string;
+}
+
+/**
+ * Font Property
+ */
+export interface FontProperty extends BaseProperty {
+	type: 'font';
+	style?: Booleanish;
+	weight?: Booleanish;
+}
+
+/**
+ * Typography Property
+ */
+export interface TypographyProperty extends BaseProperty {
+	type: 'typography';
+	supports_legacy?: Booleanish;
+	supports_customization?: Booleanish;
+}
+
+/**
+ * Button Property
+ */
+export interface ButtonProperty extends BaseProperty {
+	type: 'button';
+	supports_legacy?: Booleanish;
+	supports_customization?: Booleanish;
 }
 
 /**
