@@ -177,6 +177,7 @@ export type Property =
 	| CustomLookupProperty
 	| ImageTypeProperty
 	| ProductCustomFieldLookupProperty
+	| CategoryCustomFieldLookupProperty
 	| FragmentProperty
 	| BorderThicknessProperty
 	| CornerRadiusProperty
@@ -185,7 +186,10 @@ export type Property =
 	| PaddingProperty
 	| FontProperty
 	| TypographyProperty
-	| ButtonProperty;
+	| ButtonProperty
+	| BreakpointProperty
+	| MerchandisingPromptProperty
+	| BreakpointGroupProperty;
 
 /** The main fields that apply to all {@link Property} items  */
 export interface BaseProperty {
@@ -201,6 +205,13 @@ export interface BaseProperty {
 	 * @default false
 	 */
 	required?: Booleanish;
+	/**
+	 * Optional tooltip configuration to provide additional help text for the property
+	 */
+	tooltip?: {
+		title?: string;
+		content?: string;
+	};
 	/**
 	 * An object used to control when a property should or should not be visible
 	 *
@@ -697,3 +708,40 @@ export interface SampleDataTypesCondition {
  * Mainly used in {@link SampleDataTypesCondition.type} values
  */
 export type SampleDataTypesConditionType = 'product' | 'category' | 'order' | 'payment' | 'search';
+
+/**
+ * Breakpoint Property
+ */
+export interface BreakpointProperty extends BaseProperty {
+	type: 'breakpoint';
+}
+
+/**
+ * Merchandising Prompt Property
+ */
+export interface MerchandisingPromptProperty extends BaseProperty {
+	type: 'merchandisingprompt';
+	placeholder?: Value;
+}
+
+/**
+ * Category Custom Field Lookup Property
+ */
+export interface CategoryCustomFieldLookupProperty extends BaseProperty {
+	type: 'categorycustomfieldlookup';
+	placeholder?: Value;
+}
+
+/**
+ * Breakpoint Group Property
+ *
+ * Groups properties by breakpoint with responsive functionality
+ */
+export interface BreakpointGroupProperty extends BaseProperty {
+	type: 'breakpointgroup';
+	prompt_prefix?: string;
+	prompt_suffix?: string;
+	include_default?: Booleanish;
+	collapsed?: Booleanish;
+	properties?: Array<Property|Group>;
+}

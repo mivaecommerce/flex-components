@@ -74,8 +74,236 @@
                     "default": false,
                     "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
                 },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
                 "type": {
                     "const": "borderthickness",
+                    "description": "Controls the UI for the input device people use within Page Builder",
+                    "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "BreakpointGroupProperty": {
+            "description": "Breakpoint Group Property\n\nGroups properties by breakpoint with responsive functionality",
+            "properties": {
+                "code": {
+                    "description": "This is the unique code that identifies the property",
+                    "type": "string"
+                },
+                "collapsed": {
+                    "$ref": "#/definitions/Booleanish"
+                },
+                "include_default": {
+                    "$ref": "#/definitions/Booleanish"
+                },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
+                    "type": "string"
+                },
+                "prompt": {
+                    "description": "This is the text the end user will see in the Miva admin for this property",
+                    "type": "string"
+                },
+                "prompt_prefix": {
+                    "type": "string"
+                },
+                "prompt_suffix": {
+                    "type": "string"
+                },
+                "properties": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/TextProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/NumberProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/DateProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/TextAreaProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/SelectProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/RadioProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ColorProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/CheckboxProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/SelectorProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ImageProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/CategoryProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ProductProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/LinkProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/SliderProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/DistributedSliderProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ListProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/GroupListProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/TextEditorProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/CustomLookupProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ImageTypeProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ProductCustomFieldLookupProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/CategoryCustomFieldLookupProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/FragmentProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/BorderThicknessProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/CornerRadiusProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/DropShadowProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/LengthUnitProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/PaddingProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/FontProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/TypographyProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/ButtonProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/BreakpointProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/MerchandisingPromptProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/BreakpointGroupProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/Group"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                },
+                "required": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": false,
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "type": {
+                    "const": "breakpointgroup",
+                    "description": "Controls the UI for the input device people use within Page Builder",
+                    "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "BreakpointProperty": {
+            "description": "Breakpoint Property",
+            "properties": {
+                "code": {
+                    "description": "This is the unique code that identifies the property",
+                    "type": "string"
+                },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
+                    "type": "string"
+                },
+                "prompt": {
+                    "description": "This is the text the end user will see in the Miva admin for this property",
+                    "type": "string"
+                },
+                "required": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": false,
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "type": {
+                    "const": "breakpoint",
                     "description": "Controls the UI for the input device people use within Page Builder",
                     "type": "string"
                 },
@@ -114,8 +342,69 @@
                 "supports_legacy": {
                     "$ref": "#/definitions/Booleanish"
                 },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
                 "type": {
                     "const": "button",
+                    "description": "Controls the UI for the input device people use within Page Builder",
+                    "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "CategoryCustomFieldLookupProperty": {
+            "description": "Category Custom Field Lookup Property",
+            "properties": {
+                "code": {
+                    "description": "This is the unique code that identifies the property",
+                    "type": "string"
+                },
+                "placeholder": {
+                    "$ref": "#/definitions/Value"
+                },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
+                    "type": "string"
+                },
+                "prompt": {
+                    "description": "This is the text the end user will see in the Miva admin for this property",
+                    "type": "string"
+                },
+                "required": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": false,
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "type": {
+                    "const": "categorycustomfieldlookup",
                     "description": "Controls the UI for the input device people use within Page Builder",
                     "type": "string"
                 },
@@ -147,6 +436,18 @@
                     "$ref": "#/definitions/Booleanish",
                     "default": false,
                     "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
                 },
                 "type": {
                     "const": "category",
@@ -182,6 +483,18 @@
                     "default": false,
                     "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
                 },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
                 "type": {
                     "const": "checkbox",
                     "description": "Controls the UI for the input device people use within Page Builder",
@@ -215,6 +528,18 @@
                     "$ref": "#/definitions/Booleanish",
                     "default": false,
                     "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
                 },
                 "type": {
                     "const": "color",
@@ -267,6 +592,18 @@
                     "$ref": "#/definitions/Booleanish",
                     "default": false,
                     "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
                 },
                 "type": {
                     "const": "cornerradius",
@@ -424,6 +761,18 @@
                     "default": false,
                     "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
                 },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
                 "type": {
                     "const": "customlookup",
                     "description": "Controls the UI for the input device people use within Page Builder",
@@ -503,6 +852,18 @@
                 "serverdate": {
                     "$ref": "#/definitions/Booleanish"
                 },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
                 "type": {
                     "description": "Controls the UI for the input device people use within Page Builder",
                     "enum": [
@@ -550,6 +911,18 @@
                     "default": false,
                     "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
                 },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
                 "type": {
                     "const": "distributedslider",
                     "description": "Controls the UI for the input device people use within Page Builder",
@@ -583,6 +956,18 @@
                     "$ref": "#/definitions/Booleanish",
                     "default": false,
                     "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
                 },
                 "type": {
                     "const": "dropshadow",
@@ -702,6 +1087,9 @@
                                 "$ref": "#/definitions/ProductCustomFieldLookupProperty"
                             },
                             {
+                                "$ref": "#/definitions/CategoryCustomFieldLookupProperty"
+                            },
+                            {
                                 "$ref": "#/definitions/FragmentProperty"
                             },
                             {
@@ -727,6 +1115,15 @@
                             },
                             {
                                 "$ref": "#/definitions/ButtonProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/BreakpointProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/MerchandisingPromptProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/BreakpointGroupProperty"
                             },
                             {
                                 "$ref": "#/definitions/Group"
@@ -879,6 +1276,9 @@
                                 "$ref": "#/definitions/ProductCustomFieldLookupProperty"
                             },
                             {
+                                "$ref": "#/definitions/CategoryCustomFieldLookupProperty"
+                            },
+                            {
                                 "$ref": "#/definitions/FragmentProperty"
                             },
                             {
@@ -904,6 +1304,15 @@
                             },
                             {
                                 "$ref": "#/definitions/ButtonProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/BreakpointProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/MerchandisingPromptProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/BreakpointGroupProperty"
                             },
                             {
                                 "$ref": "#/definitions/Group"
@@ -1035,6 +1444,18 @@
                 "style": {
                     "$ref": "#/definitions/Booleanish"
                 },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
                 "type": {
                     "const": "font",
                     "description": "Controls the UI for the input device people use within Page Builder",
@@ -1071,6 +1492,18 @@
                     "$ref": "#/definitions/Booleanish",
                     "default": false,
                     "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
                 },
                 "type": {
                     "const": "fragment",
@@ -1168,6 +1601,9 @@
                                 "$ref": "#/definitions/ProductCustomFieldLookupProperty"
                             },
                             {
+                                "$ref": "#/definitions/CategoryCustomFieldLookupProperty"
+                            },
+                            {
                                 "$ref": "#/definitions/FragmentProperty"
                             },
                             {
@@ -1193,6 +1629,15 @@
                             },
                             {
                                 "$ref": "#/definitions/ButtonProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/BreakpointProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/MerchandisingPromptProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/BreakpointGroupProperty"
                             },
                             {
                                 "$ref": "#/definitions/Group"
@@ -1309,6 +1754,9 @@
                                 "$ref": "#/definitions/ProductCustomFieldLookupProperty"
                             },
                             {
+                                "$ref": "#/definitions/CategoryCustomFieldLookupProperty"
+                            },
+                            {
                                 "$ref": "#/definitions/FragmentProperty"
                             },
                             {
@@ -1336,6 +1784,15 @@
                                 "$ref": "#/definitions/ButtonProperty"
                             },
                             {
+                                "$ref": "#/definitions/BreakpointProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/MerchandisingPromptProperty"
+                            },
+                            {
+                                "$ref": "#/definitions/BreakpointGroupProperty"
+                            },
+                            {
                                 "$ref": "#/definitions/Group"
                             }
                         ]
@@ -1351,6 +1808,18 @@
                     "additionalProperties": true,
                     "description": "defines the default value the \"Add New\" link is clicked.",
                     "properties": {},
+                    "type": "object"
+                },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
                     "type": "object"
                 },
                 "type": {
@@ -1408,6 +1877,18 @@
                     },
                     "type": "array"
                 },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
                 "type": {
                     "const": "image",
                     "description": "Controls the UI for the input device people use within Page Builder",
@@ -1444,6 +1925,18 @@
                     "$ref": "#/definitions/Booleanish",
                     "default": false,
                     "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
                 },
                 "type": {
                     "const": "imagetype",
@@ -1493,6 +1986,18 @@
                     "default": false,
                     "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
                 },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
                 "type": {
                     "const": "lengthunit",
                     "description": "Controls the UI for the input device people use within Page Builder",
@@ -1529,6 +2034,18 @@
                 },
                 "supports_new_tab": {
                     "$ref": "#/definitions/Booleanish"
+                },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
                 },
                 "type": {
                     "const": "link",
@@ -1592,8 +2109,69 @@
                     "properties": {},
                     "type": "object"
                 },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
                 "type": {
                     "const": "list",
+                    "description": "Controls the UI for the input device people use within Page Builder",
+                    "type": "string"
+                },
+                "visibility_conditions": {
+                    "additionalProperties": true,
+                    "description": "An object used to control when a property should or should not be visible",
+                    "properties": {},
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "MerchandisingPromptProperty": {
+            "description": "Merchandising Prompt Property",
+            "properties": {
+                "code": {
+                    "description": "This is the unique code that identifies the property",
+                    "type": "string"
+                },
+                "placeholder": {
+                    "$ref": "#/definitions/Value"
+                },
+                "preview_property_selector": {
+                    "description": "CSS Selector that uniquely selects the properties within a component. Selected from the `preview_component_selector` element.\n\nSupports the following tokens/features:\n\n- `%nth-child%` - indicates an array position and should actually be replaced with `:nth-child(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- `%nth-of-type%` - indicates an array position and should actually be replaced with `:nth-of-type(N)` where N is the array index of the actual property at that point in time from a list-type property. Note that there may be multiple array levels.\n- ` :shadow ` - indicates that searching the dom will need to switch to the shadow dom on the currently selected element. Note that we will ONLY be supporting this when it is surrounded by the beginning / end of the line, or white space. ie, \"mmx-hero:shadow\" is not valid, it MUST be \"mmx-hero :shadow\"",
+                    "type": "string"
+                },
+                "prompt": {
+                    "description": "This is the text the end user will see in the Miva admin for this property",
+                    "type": "string"
+                },
+                "required": {
+                    "$ref": "#/definitions/Booleanish",
+                    "default": false,
+                    "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "type": {
+                    "const": "merchandisingprompt",
                     "description": "Controls the UI for the input device people use within Page Builder",
                     "type": "string"
                 },
@@ -1819,6 +2397,18 @@
                 "textsettings": {
                     "$ref": "#/definitions/TextSettings"
                 },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
                 "type": {
                     "const": "text",
                     "description": "Controls the UI for the input device people use within Page Builder",
@@ -1873,6 +2463,18 @@
                     "$ref": "#/definitions/Booleanish",
                     "default": false,
                     "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
                 },
                 "type": {
                     "const": "padding",
@@ -1939,6 +2541,18 @@
                     "default": false,
                     "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
                 },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
                 "type": {
                     "const": "productcustomfieldlookup",
                     "description": "Controls the UI for the input device people use within Page Builder",
@@ -1972,6 +2586,18 @@
                     "$ref": "#/definitions/Booleanish",
                     "default": false,
                     "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
                 },
                 "type": {
                     "const": "product",
@@ -2012,6 +2638,18 @@
                     "$ref": "#/definitions/Booleanish",
                     "default": false,
                     "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
                 },
                 "type": {
                     "const": "radio",
@@ -2096,6 +2734,18 @@
                     "default": false,
                     "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
                 },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
                 "type": {
                     "const": "select",
                     "description": "Controls the UI for the input device people use within Page Builder",
@@ -2159,6 +2809,18 @@
                     "default": false,
                     "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
                 },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
                 "type": {
                     "const": "selector",
                     "description": "Controls the UI for the input device people use within Page Builder",
@@ -2210,6 +2872,18 @@
                     "description": "use -1 to use default scale",
                     "type": "number"
                 },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
                 "type": {
                     "const": "slider",
                     "description": "Controls the UI for the input device people use within Page Builder",
@@ -2253,6 +2927,18 @@
                 "textsettings": {
                     "$ref": "#/definitions/TextSettings"
                 },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
                 "type": {
                     "const": "textarea",
                     "description": "Controls the UI for the input device people use within Page Builder",
@@ -2286,6 +2972,18 @@
                     "$ref": "#/definitions/Booleanish",
                     "default": false,
                     "description": "Designate if the property should be required by the user when editing through Page Builder's UI"
+                },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
                 },
                 "type": {
                     "const": "texteditor",
@@ -2345,6 +3043,18 @@
                 },
                 "textsettings": {
                     "$ref": "#/definitions/TextSettings"
+                },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
                 },
                 "type": {
                     "const": "text",
@@ -2581,6 +3291,16 @@
                 {
                     "allOf": [
                         {
+                            "$ref": "#/definitions/CategoryCustomFieldLookupProperty"
+                        },
+                        {
+                            "$ref": "#/definitions/AdditionalTextSettings"
+                        }
+                    ]
+                },
+                {
+                    "allOf": [
+                        {
                             "$ref": "#/definitions/FragmentProperty"
                         },
                         {
@@ -2667,6 +3387,36 @@
                             "$ref": "#/definitions/AdditionalTextSettings"
                         }
                     ]
+                },
+                {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/BreakpointProperty"
+                        },
+                        {
+                            "$ref": "#/definitions/AdditionalTextSettings"
+                        }
+                    ]
+                },
+                {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/MerchandisingPromptProperty"
+                        },
+                        {
+                            "$ref": "#/definitions/AdditionalTextSettings"
+                        }
+                    ]
+                },
+                {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/BreakpointGroupProperty"
+                        },
+                        {
+                            "$ref": "#/definitions/AdditionalTextSettings"
+                        }
+                    ]
                 }
             ],
             "description": "An object that extends the {@link Property} with some {@link AdditionalTextSettings}\n\nGreat for adding Font Size, Font Color and Text Alignment for regular text for various states (ex. focus, hover, & active or mobile, tablet, desktop) states are defined by {@link AdditionalTextSettings.pseudoclasses}"
@@ -2708,6 +3458,18 @@
                 },
                 "supports_legacy": {
                     "$ref": "#/definitions/Booleanish"
+                },
+                "tooltip": {
+                    "description": "Optional tooltip configuration to provide additional help text for the property",
+                    "properties": {
+                        "content": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
                 },
                 "type": {
                     "const": "typography",
